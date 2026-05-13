@@ -21,7 +21,7 @@ const products = [
     id: 1,
     name: "Sofa Minimalis Nara",
     category: "Minimalis",
-    price: "Rp8.9.jpg0.000",
+    price: "Rp8.900.000",
     shortDesc: "Sofa minimalis elegan untuk ruang tamu modern.",
     description:
       "Sofa Minimalis Nara dirancang untuk ruang tamu modern dengan tampilan elegan, bahan premium, dan pilihan warna yang dapat disesuaikan.",
@@ -41,7 +41,7 @@ const products = [
     id: 2,
     name: "Sofa Aruna Cream",
     category: "Minimalis",
-    price: "Rp6.7.jpg0.000",
+    price: "Rp6.700.000",
     shortDesc: "Sofa cream lembut dengan desain hangat dan bersih.",
     description:
       "Sofa Aruna Cream cocok untuk interior bernuansa natural, minimalis, dan modern. Warna cream memberikan kesan luas dan nyaman.",
@@ -139,7 +139,7 @@ const products = [
     id: 7,
     name: "Sofa minimalis",
     category: "minimalis",
-    price: "Mulai Rp5.000.000",
+    price: "Rp5.000.000",
     shortDesc: "Sofa minimalis dengan desain sederhana namun elegan dan ada lekungan disandaran.",
     description:
       "Sofa minimalis dapat disesuaikan dengan kebutuhan ruangan Anda, mulai dari ukuran, warna, bahan, hingga bentuk sofa.",
