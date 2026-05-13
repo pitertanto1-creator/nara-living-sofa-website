@@ -21,14 +21,14 @@ const products = [
     id: 1,
     name: "Sofa Minimalis Nara",
     category: "Minimalis",
-    price: "Rp8.950.000",
+    price: "Rp8.9.jpg0.000",
     shortDesc: "Sofa minimalis elegan untuk ruang tamu modern.",
     description:
       "Sofa Minimalis Nara dirancang untuk ruang tamu modern dengan tampilan elegan, bahan premium, dan pilihan warna yang dapat disesuaikan.",
     images: [
-      "images/001.png",
-      "images/002.png",
-      "images/003.png"
+      "images/001.jpg",
+      "images/002.jpg",
+      "images/003.jpg"
     ],
     features: [
       "Bisa custom warna",
@@ -41,14 +41,14 @@ const products = [
     id: 2,
     name: "Sofa Aruna Cream",
     category: "Minimalis",
-    price: "Rp6.750.000",
+    price: "Rp6.7.jpg0.000",
     shortDesc: "Sofa cream lembut dengan desain hangat dan bersih.",
     description:
       "Sofa Aruna Cream cocok untuk interior bernuansa natural, minimalis, dan modern. Warna cream memberikan kesan luas dan nyaman.",
     images: [
-      "images/004.png",
-      "images/005.png",
-      "images/006.png"
+      "images/004.jpg",
+      "images/005.jpg",
+      "images/006.jpg"
     ],
     features: [
       "Warna cream elegan",
@@ -66,9 +66,9 @@ const products = [
     description:
       "Sofa L Minimalis dibuat untuk kebutuhan keluarga yang menginginkan sofa luas, nyaman, dan cocok untuk ruang santai bersama.",
     images: [
-      "images/01.png",
-      "images/02.png",
-      "images/03.png"
+      "images/01.jpg",
+      "images/02.jpg",
+      "images/03.jpg"
     ],
     features: [
       "Menggunakan busa berkualitas tinggi",,
@@ -85,9 +85,9 @@ const products = [
     description:
       "Sofa Chesterfield Classic cocok untuk rumah, apartemen, atau kamar tamu karena dapat digunakan sebagai sofa dan tempat tidur tambahan.",
     images: [
-      "images/000.png",
-      "images/0001.png",
-      "images/0002.png"
+      "images/000.jpg",
+      "images/0001.jpg",
+      "images/0002.jpg"
     ],
     features: [
       "Kapasitas besar",
@@ -104,9 +104,9 @@ const products = [
     description:
       "Sofa Oscar memiliki ukuran besar dengan dudukan empuk, cocok untuk ruang keluarga dan momen berkumpul bersama.",
     images: [
-      "images/04.png",
-      "images/05.png",
-      "images/06.png"
+      "images/04.jpg",
+      "images/05.jpg",
+      "images/06.jpg"
     ],
     features: [
       "Kapasitas besar",
@@ -124,9 +124,9 @@ const products = [
     description:
       "Sofa Premium Comfort menghadirkan tampilan mewah dengan material pilihan dan finishing yang detail untuk ruangan elegan.",
     images: [
-      "images/-022.png",
-      "images/-023.png",
-      "images/-024.png"
+      "images/-022.jpg",
+      "images/-023.jpg",
+      "images/-024.jpg"
     ],
     features: [
       "Material premium",
@@ -144,9 +144,9 @@ const products = [
     description:
       "Sofa minimalis dapat disesuaikan dengan kebutuhan ruangan Anda, mulai dari ukuran, warna, bahan, hingga bentuk sofa.",
     images: [
-      "images/-040.png",
-      "images/-041.png",
-      "images/-042.png"
+      "images/-040.jpg",
+      "images/-041.jpg",
+      "images/-042.jpg"
     ],
     features: [
       "Custom ukuran",
@@ -164,9 +164,9 @@ const products = [
     description:
       "Sofa Minimalis Grey hadir dengan warna netral yang mudah dipadukan dengan berbagai konsep interior rumah.",
     images: [
-      "images/-037.png",
-      "images/-038.png",
-      "images/-039.png"
+      "images/-037.jpg",
+      "images/-038.jpg",
+      "images/-039.jpg"
     ],
     features: [
       "Warna netral",
@@ -184,9 +184,9 @@ const products = [
     description:
       "Sofa Sectional memberikan kesan hangat dan elegan, cocok untuk ruang tamu, lounge, atau area santai keluarga.",
     images: [
-      "images/-058.png",
-      "images/-059.png",
-      "images/-060.png"
+      "images/-058.jpg",
+      "images/-059.jpg",
+      "images/-060.jpg"
     ],
     features: [
       "Warna light grey elegan",
@@ -204,9 +204,9 @@ const products = [
     description:
       "Sofa Charcoal Modern cocok untuk interior modern dengan karakter warna yang tegas, elegan, dan mudah dirawat.",
     images: [
-      "images/-055.png",
-      "images/-056.png",
-      "images/-057.png"
+      "images/-055.jpg",
+      "images/-056.jpg",
+      "images/-057.jpg"
     ],
     features: [
       "Warna charcoal modern",
