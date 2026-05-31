@@ -1,24 +1,68 @@
 /*
   SCRIPT WEBSITE NARA LIVING
-  Data yang sering diedit sudah dipindahkan ke data.js.
-  Edit gambar, produk, harga, dan fitur di data.js saja.
+  Data yang sering diedit ada di data.js.
+  File ini mengatur render tampilan, filter produk, modal, dan WhatsApp.
 */
-document.documentElement.classList.add("js-ready");
-const { SITE, PRODUCTS } = window.NARA_DATA || {};
 
-if (!SITE || !PRODUCTS) {
-  throw new Error("data.js belum dimuat. Pastikan <script src="data.js"></script> berada sebelum script.js di index.html");
-}
+document.documentElement.classList.add("js-ready");
+
+const DEFAULT_DATA = {
+  SITE: {
+    whatsappNumber: "6282195842319",
+    whatsappMessage: "Halo Nara Living, saya ingin konsultasi sofa.",
+    hero: {
+      eyebrow: "Interior Sofa Studio",
+      title: "Design Your Dream Living Space",
+      subtitle: "Sofa modern dan custom untuk rumah yang nyaman dan elegan.",
+      primaryButton: "Lihat Katalog",
+      secondaryButton: "Konsultasi Gratis",
+      badgeTitle: "Custom Ready",
+      badgeText: "warna, ukuran, dan bahan"
+    },
+    heroImage: "images/sofa hero.jpg",
+    aboutImage: "images/SOFA HERO 2.jpg",
+    heroCards: [],
+    categories: [],
+    collections: [],
+    advantages: [],
+    aboutTitle: "Furniture yang Dibuat untuk Nyaman Dipakai Setiap Hari",
+    aboutText: "Kami membantu Anda memilih sofa yang cocok dengan kebutuhan ruangan.",
+    features: [],
+    promo: {
+      label: "Promo Spesial",
+      title: "Promo Spesial Bulan Ini",
+      text: "Dapatkan penawaran khusus untuk produk sofa tertentu.",
+      button: "Cek Promo"
+    },
+    testimonials: [],
+    steps: [],
+    contact: {
+      title: "Siap Membuat Ruang Tamu Lebih Elegan?",
+      text: "Klik tombol WhatsApp untuk konsultasi produk."
+    }
+  },
+  PRODUCTS: []
+};
+
+const DATA = window.NARA_DATA || DEFAULT_DATA;
+const SITE = DATA.SITE || DEFAULT_DATA.SITE;
+const PRODUCTS = Array.isArray(DATA.PRODUCTS) ? DATA.PRODUCTS : [];
 
 const qs = (selector) => document.querySelector(selector);
 const qsa = (selector) => document.querySelectorAll(selector);
 
+function safeText(value, fallback = "") {
+  return value == null ? fallback : String(value);
+}
+
 function createWhatsappLink(message) {
-  return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message || SITE.whatsappMessage)}`;
+  const number = SITE.whatsappNumber || DEFAULT_DATA.SITE.whatsappNumber;
+  const text = message || SITE.whatsappMessage || DEFAULT_DATA.SITE.whatsappMessage;
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 }
 
 function placeholderImage(title) {
-  const safeTitle = String(title || "Nara Living").replace(/[<>&]/g, "");
+  const safeTitle = safeText(title, "Nara Living").replace(/[<>&]/g, "");
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650">
       <defs>
@@ -44,6 +88,11 @@ function setImageFallback(img, title) {
   });
 }
 
+function setText(selector, text) {
+  const element = qs(selector);
+  if (element) element.textContent = safeText(text, element.textContent);
+}
+
 function initHeader() {
   const menuToggle = qs("#menuToggle");
   const navMenu = qs("#navMenu");
@@ -63,16 +112,24 @@ function initHeader() {
 }
 
 function renderHero() {
-  qs("#heroEyebrow").textContent = SITE.hero.eyebrow;
-  qs("#heroTitle").textContent = SITE.hero.title;
-  qs("#heroSubtitle").textContent = SITE.hero.subtitle;
+  setText("#heroEyebrow", SITE.hero?.eyebrow);
+  setText("#heroTitle", SITE.hero?.title);
+  setText("#heroSubtitle", SITE.hero?.subtitle);
+  setText("#heroPrimaryButton", SITE.hero?.primaryButton);
+  setText("#heroSecondaryButton", SITE.hero?.secondaryButton);
+  setText("#heroBadgeTitle", SITE.hero?.badgeTitle);
+  setText("#heroBadgeText", SITE.hero?.badgeText);
 
   const heroImage = qs("#heroImage");
-  heroImage.src = SITE.heroImage;
-  setImageFallback(heroImage, "Nara Living Hero");
+  if (heroImage && SITE.heroImage) {
+    heroImage.src = SITE.heroImage;
+    setImageFallback(heroImage, "Nara Living Hero");
+  }
 
   const row = qs("#heroCardRow");
-  row.innerHTML = SITE.heroCards
+  if (!row) return;
+
+  row.innerHTML = (SITE.heroCards || [])
     .map(
       (item) => `
         <article class="hero-mini-card reveal visible">
@@ -88,9 +145,29 @@ function renderHero() {
   row.querySelectorAll("img").forEach((img) => setImageFallback(img, img.alt));
 }
 
+function renderCategories() {
+  const grid = qs("#kategoriGrid");
+  if (!grid) return;
+
+  grid.innerHTML = (SITE.categories || [])
+    .map(
+      (item) => `
+        <article class="kategori-card reveal">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" />
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+        </article>`
+    )
+    .join("");
+
+  grid.querySelectorAll("img").forEach((img) => setImageFallback(img, img.alt));
+}
+
 function renderCollections() {
   const grid = qs("#collectionGrid");
-  grid.innerHTML = SITE.collections
+  if (!grid) return;
+
+  grid.innerHTML = (SITE.collections || [])
     .map(
       (item) => `
         <article class="collection-card reveal">
@@ -108,12 +185,36 @@ function renderCollections() {
   grid.querySelectorAll("img").forEach((img) => setImageFallback(img, img.alt));
 }
 
-function renderFeatures() {
-  const aboutImage = qs("#aboutImage");
-  aboutImage.src = SITE.aboutImage;
-  setImageFallback(aboutImage, "Nara Living About");
+function renderAdvantages() {
+  const grid = qs("#keunggulanGrid");
+  if (!grid) return;
 
-  qs("#featureList").innerHTML = SITE.features
+  grid.innerHTML = (SITE.advantages || [])
+    .map(
+      (item) => `
+        <article class="keunggulan-card reveal">
+          <div class="keunggulan-icon">${item.icon}</div>
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+        </article>`
+    )
+    .join("");
+}
+
+function renderAbout() {
+  setText("#aboutTitle", SITE.aboutTitle);
+  setText("#aboutText", SITE.aboutText);
+
+  const aboutImage = qs("#aboutImage");
+  if (aboutImage && SITE.aboutImage) {
+    aboutImage.src = SITE.aboutImage;
+    setImageFallback(aboutImage, "Nara Living About");
+  }
+
+  const featureList = qs("#featureList");
+  if (!featureList) return;
+
+  featureList.innerHTML = (SITE.features || [])
     .map(
       (item) => `
         <article class="feature-item">
@@ -127,8 +228,18 @@ function renderFeatures() {
     .join("");
 }
 
+function renderPromo() {
+  setText("#promoLabel", SITE.promo?.label);
+  setText("#promoTitle", SITE.promo?.title);
+  setText("#promoText", SITE.promo?.text);
+  setText("#promoButton", SITE.promo?.button);
+}
+
 function renderTestimonials() {
-  qs("#testimonialGrid").innerHTML = SITE.testimonials
+  const grid = qs("#testimonialGrid");
+  if (!grid) return;
+
+  grid.innerHTML = (SITE.testimonials || [])
     .map(
       (item) => `
         <article class="testimonial-card reveal">
@@ -141,7 +252,10 @@ function renderTestimonials() {
 }
 
 function renderProcess() {
-  qs("#processGrid").innerHTML = SITE.steps
+  const grid = qs("#processGrid");
+  if (!grid) return;
+
+  grid.innerHTML = (SITE.steps || [])
     .map(
       (item, index) => `
         <article class="process-item">
@@ -153,11 +267,25 @@ function renderProcess() {
     .join("");
 }
 
+function renderContact() {
+  setText("#contactTitle", SITE.contact?.title);
+  setText("#contactText", SITE.contact?.text);
+
+  const mainWhatsapp = qs("#mainWhatsapp");
+  const floatingWhatsapp = qs("#floatingWhatsapp");
+  const link = createWhatsappLink();
+
+  if (mainWhatsapp) mainWhatsapp.href = link;
+  if (floatingWhatsapp) floatingWhatsapp.href = link;
+}
+
 function renderFilters() {
   const categoryFilter = qs("#categoryFilter");
-  const categories = [...new Set(PRODUCTS.map((product) => product.category))].sort();
+  if (!categoryFilter) return;
 
+  const categories = [...new Set(PRODUCTS.map((product) => product.category).filter(Boolean))].sort();
   categoryFilter.innerHTML = `<option value="all">Semua Kategori</option>`;
+
   categories.forEach((category) => {
     const option = document.createElement("option");
     option.value = category;
@@ -169,9 +297,10 @@ function renderFilters() {
 function renderProducts(productList) {
   const productGrid = qs("#productGrid");
   const emptyState = qs("#emptyState");
+  if (!productGrid) return;
 
   productGrid.innerHTML = "";
-  emptyState.style.display = productList.length ? "none" : "block";
+  if (emptyState) emptyState.style.display = productList.length ? "none" : "block";
 
   productList.forEach((product) => {
     const card = document.createElement("article");
@@ -188,7 +317,7 @@ function renderProducts(productList) {
         <p>${product.shortDesc}</p>
         <span class="product-price">${product.price}</span>
         <div class="product-actions">
-          <button class="btn-detail" type="button" data-product-id="${product.id}">View Product</button>
+          <button class="btn-detail" type="button" data-product-id="${product.id}">Lihat Detail</button>
           <a class="btn-chat" href="${createWhatsappLink(`Halo, saya tertarik dengan ${product.name}`)}" target="_blank" rel="noopener">Chat</a>
         </div>
       </div>`;
@@ -200,8 +329,11 @@ function renderProducts(productList) {
 }
 
 function filterProducts() {
-  const searchValue = qs("#searchProduct").value.trim().toLowerCase();
-  const categoryValue = qs("#categoryFilter").value;
+  const searchElement = qs("#searchProduct");
+  const categoryElement = qs("#categoryFilter");
+
+  const searchValue = (searchElement?.value || "").trim().toLowerCase();
+  const categoryValue = categoryElement?.value || "all";
 
   const filtered = PRODUCTS.filter((product) => {
     const searchableText = [
@@ -210,7 +342,7 @@ function filterProducts() {
       product.price,
       product.shortDesc,
       product.description,
-      product.features.join(" ")
+      Array.isArray(product.features) ? product.features.join(" ") : ""
     ]
       .join(" ")
       .toLowerCase();
@@ -225,8 +357,11 @@ function filterProducts() {
 }
 
 function initProductSearch() {
-  qs("#searchProduct").addEventListener("input", filterProducts);
-  qs("#categoryFilter").addEventListener("change", filterProducts);
+  const searchProduct = qs("#searchProduct");
+  const categoryFilter = qs("#categoryFilter");
+
+  if (searchProduct) searchProduct.addEventListener("input", filterProducts);
+  if (categoryFilter) categoryFilter.addEventListener("change", filterProducts);
 }
 
 function openProductModal(productId) {
@@ -238,70 +373,82 @@ function openProductModal(productId) {
   const modalThumbnails = qs("#modalThumbnails");
   const modalFeatures = qs("#modalFeatures");
 
-  qs("#modalCategory").textContent = product.category;
-  qs("#modalTitle").textContent = product.name;
-  qs("#modalDescription").textContent = product.description;
-  qs("#modalPrice").textContent = product.price;
-  qs("#modalWhatsapp").href = createWhatsappLink(`Halo, saya tertarik dengan ${product.name}`);
+  setText("#modalCategory", product.category);
+  setText("#modalTitle", product.name);
+  setText("#modalDescription", product.description);
+  setText("#modalPrice", product.price);
 
-  modalMainImage.src = product.images[0];
-  modalMainImage.alt = product.name;
-  setImageFallback(modalMainImage, product.name);
+  const modalWhatsapp = qs("#modalWhatsapp");
+  if (modalWhatsapp) modalWhatsapp.href = createWhatsappLink(`Halo, saya tertarik dengan ${product.name}`);
 
-  modalFeatures.innerHTML = product.features.map((feature) => `<li>${feature}</li>`).join("");
-  modalThumbnails.innerHTML = "";
+  const images = Array.isArray(product.images) ? product.images : [];
+  if (modalMainImage) {
+    modalMainImage.src = images[0] || placeholderImage(product.name);
+    modalMainImage.alt = product.name;
+    setImageFallback(modalMainImage, product.name);
+  }
 
-  product.images.forEach((image, index) => {
-    const thumb = document.createElement("img");
-    thumb.src = image;
-    thumb.alt = `${product.name} gambar ${index + 1}`;
-    thumb.className = `modal-thumb${index === 0 ? " active" : ""}`;
-    setImageFallback(thumb, product.name);
+  if (modalFeatures) {
+    modalFeatures.innerHTML = (product.features || []).map((feature) => `<li>${feature}</li>`).join("");
+  }
 
-    thumb.addEventListener("click", () => {
-      modalMainImage.src = image;
-      qsa(".modal-thumb").forEach((item) => item.classList.remove("active"));
-      thumb.classList.add("active");
+  if (modalThumbnails) {
+    modalThumbnails.innerHTML = "";
+    images.forEach((image, index) => {
+      const thumb = document.createElement("img");
+      thumb.src = image;
+      thumb.alt = `${product.name} gambar ${index + 1}`;
+      thumb.className = `modal-thumb${index === 0 ? " active" : ""}`;
+      setImageFallback(thumb, product.name);
+
+      thumb.addEventListener("click", () => {
+        if (modalMainImage) modalMainImage.src = image;
+        modalThumbnails.querySelectorAll(".modal-thumb").forEach((item) => item.classList.remove("active"));
+        thumb.classList.add("active");
+      });
+
+      modalThumbnails.appendChild(thumb);
     });
+  }
 
-    modalThumbnails.appendChild(thumb);
-  });
-
-  productModal.classList.add("active");
-  productModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  if (productModal) {
+    productModal.classList.add("active");
+    productModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
 }
 
 function closeProductModal() {
   const productModal = qs("#productModal");
+  if (!productModal) return;
+
   productModal.classList.remove("active");
   productModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
 }
 
 function initModal() {
+  const closeModal = qs("#closeModal");
   const productModal = qs("#productModal");
-  qs("#closeModal").addEventListener("click", closeProductModal);
 
-  productModal.addEventListener("click", (event) => {
-    if (event.target === productModal) closeProductModal();
-  });
+  if (closeModal) closeModal.addEventListener("click", closeProductModal);
+
+  if (productModal) {
+    productModal.addEventListener("click", (event) => {
+      if (event.target === productModal) closeProductModal();
+    });
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeProductModal();
   });
 }
 
-function initWhatsappLinks() {
-  qs("#mainWhatsapp").href = createWhatsappLink();
-  qs("#floatingWhatsapp").href = createWhatsappLink();
-}
-
 function initRevealAnimation() {
   const elements = qsa(".reveal");
 
   if (!("IntersectionObserver" in window)) {
-    elements.forEach((item) => item.classList.add("visible"));
+    elements.forEach((element) => element.classList.add("visible"));
     return;
   }
 
@@ -317,27 +464,31 @@ function initRevealAnimation() {
     { threshold: 0.12 }
   );
 
-  elements.forEach((item) => observer.observe(item));
+  elements.forEach((element) => observer.observe(element));
 }
 
-function initFooterYear() {
-  qs("#currentYear").textContent = new Date().getFullYear();
+function initYear() {
+  const year = qs("#currentYear");
+  if (year) year.textContent = new Date().getFullYear();
 }
 
-function initApp() {
+function initWebsite() {
   initHeader();
   renderHero();
+  renderCategories();
   renderCollections();
-  renderFeatures();
+  renderAdvantages();
+  renderAbout();
+  renderPromo();
   renderTestimonials();
   renderProcess();
+  renderContact();
   renderFilters();
   renderProducts(PRODUCTS);
   initProductSearch();
   initModal();
-  initWhatsappLinks();
-  initFooterYear();
+  initYear();
   initRevealAnimation();
 }
 
-document.addEventListener("DOMContentLoaded", initApp);
+document.addEventListener("DOMContentLoaded", initWebsite);

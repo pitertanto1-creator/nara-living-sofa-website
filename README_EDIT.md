@@ -1,59 +1,103 @@
-# Nara Living - Versi Mudah Edit
+# Panduan Edit Cepat Website Nara Living
 
-File yang paling sering diedit sekarang adalah `data.js`.
+Versi ini mengembalikan fitur lengkap yang sebelumnya ada, tetapi tetap memakai desain baru yang lebih modern.
 
-## Ganti gambar
+## File yang sering diedit
 
-1. Masukkan foto ke folder `images`.
-2. Buka `data.js`.
-3. Ganti nama file di bagian `foto("nama-file.jpg")`.
+Edit data website di:
 
-Contoh:
+```txt
+data.js
+```
+
+File `script.js` tidak perlu diedit kecuali ingin mengubah cara kerja website.
+
+## Cara ganti gambar hero
+
+Buka `data.js`, cari:
+
+```js
+heroImage: foto("sofa hero.jpg"),
+```
+
+Ganti nama file sesuai gambar di folder `images`:
 
 ```js
 heroImage: foto("hero-baru.jpg"),
 ```
 
-Untuk produk:
+## Cara ganti gambar produk
+
+Cari produk yang ingin diganti, lalu ubah bagian `images`:
 
 ```js
-images: [foto("produk-1.jpg"), foto("produk-2.jpg"), foto("produk-3.jpg")],
+images: [foto("001.jpg"), foto("002.jpg"), foto("003.jpg")],
 ```
 
-## Ganti fitur produk
+Contoh:
 
-Cari produk yang ingin diedit, lalu ubah bagian `features`:
+```js
+images: [foto("sofa-baru-1.jpg"), foto("sofa-baru-2.jpg"), foto("sofa-baru-3.jpg")],
+```
+
+## Cara ganti fitur produk
+
+Cari bagian `features`:
 
 ```js
 features: [
   "Bisa custom warna",
-  "Busa empuk",
-  "Rangka kuat",
-  "Garansi jahitan"
+  "Bahan premium",
+  "Jahitan rapi"
 ]
 ```
 
-## Tambah produk baru
+Ubah teksnya sesuai kebutuhan.
 
-Copy satu blok produk di `PRODUCTS`, lalu ubah:
+## Cara ganti ukuran gambar
 
-- `id`
-- `name`
-- `category`
-- `price`
-- `shortDesc`
-- `description`
-- `images`
-- `features`
+Buka `style.css`, bagian atas ada:
 
-Pastikan `id` tidak sama dengan produk lain.
+```css
+--hero-image-height: 560px;
+--product-image-height: 265px;
+--modal-image-height: 430px;
+```
 
-## Setelah edit
+Ubah angkanya sesuai kebutuhan.
 
-Jalankan:
+## Gambar terpotong atau tidak?
+
+Di `style.css`:
+
+```css
+--product-image-fit: cover;
+```
+
+- `cover` = gambar memenuhi card dan terlihat rapi, tapi bisa terpotong.
+- `contain` = gambar utuh, tapi bisa ada ruang kosong.
+
+## Upload ke GitHub
+
+Setelah edit file, jalankan:
 
 ```bash
 git add .
-git commit -m "Update gambar dan data website"
-git push
+git commit -m "Update website Nara Living"
+git push origin main
 ```
+
+## Struktur folder yang benar
+
+```txt
+Nara website/
+├── images/
+├── index.html
+├── data.js
+├── script.js
+├── style.css
+├── README_EDIT.md
+└── netlify.toml
+```
+
+Jangan hapus folder `images`.
