@@ -1,6 +1,0 @@
-Project 1:
-Nara Living - Website Katalog Sofa
-Link: https://naraliving.netlify.app
-GitHub: https://github.com/pitertanto1-creator/nara-living-sofa-website
-Teknologi: HTML, CSS, JavaScript
-Fitur: responsive, katalog produk, filter kategori, search produk, modal detail, galeri gambar, tombol WhatsApp
