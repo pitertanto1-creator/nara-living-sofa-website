@@ -1,88 +1,59 @@
-# Nara Living - Interior Inspired Theme
+# Nara Living - Versi Mudah Edit
 
-Desain ini dibuat ulang dengan gaya modern furniture/interior seperti contoh referensi: hero besar, card kategori mengambang, section koleksi, katalog produk, about, testimoni, dan CTA WhatsApp.
+File yang paling sering diedit sekarang adalah `data.js`.
 
-## File yang perlu di-upload ke GitHub
+## Ganti gambar
 
-Replace file lama dengan file ini:
-
-- `index.html`
-- `style.css`
-- `script.js`
-- `README_EDIT.md`
-- `netlify.toml`
-
-Jangan hapus folder `images` lama karena desain ini masih memakai gambar dari folder tersebut.
-
-## Cara ganti gambar utama
-
-Buka `script.js`, cari:
-
-```js
-heroImage: "images/sofa hero.jpg",
-aboutImage: "images/SOFA HERO 2.jpg",
-```
-
-Ganti dengan nama file baru, contoh:
-
-```js
-heroImage: "images/hero-baru.jpg",
-aboutImage: "images/about-baru.jpg",
-```
-
-Pastikan file gambarnya ada di folder `images`.
-
-## Cara ganti gambar produk
-
-Buka `script.js`, cari bagian `PRODUCTS`, lalu edit:
-
-```js
-images: ["images/001.jpg", "images/002.jpg", "images/003.jpg"],
-```
+1. Masukkan foto ke folder `images`.
+2. Buka `data.js`.
+3. Ganti nama file di bagian `foto("nama-file.jpg")`.
 
 Contoh:
 
 ```js
-images: ["images/sofa-nara-1.jpg", "images/sofa-nara-2.jpg", "images/sofa-nara-3.jpg"],
+heroImage: foto("hero-baru.jpg"),
 ```
 
-## Cara ubah ukuran gambar
+Untuk produk:
 
-Buka `style.css`, cari bagian `:root`:
-
-```css
---hero-image-height: 560px;
---collection-image-height: 210px;
---product-image-height: 260px;
---modal-image-height: 430px;
+```js
+images: [foto("produk-1.jpg"), foto("produk-2.jpg"), foto("produk-3.jpg")],
 ```
 
-Perbesar atau perkecil angka `px` sesuai kebutuhan.
+## Ganti fitur produk
 
-## Cara agar gambar tidak terpotong
+Cari produk yang ingin diedit, lalu ubah bagian `features`:
 
-Di `style.css`, bagian `:root`, ubah:
-
-```css
---product-image-fit: cover;
+```js
+features: [
+  "Bisa custom warna",
+  "Busa empuk",
+  "Rangka kuat",
+  "Garansi jahitan"
+]
 ```
 
-menjadi:
+## Tambah produk baru
 
-```css
---product-image-fit: contain;
-```
+Copy satu blok produk di `PRODUCTS`, lalu ubah:
 
-`cover` membuat gambar penuh dan rapi, tapi bisa terpotong. `contain` membuat gambar terlihat utuh, tapi mungkin ada ruang kosong.
+- `id`
+- `name`
+- `category`
+- `price`
+- `shortDesc`
+- `description`
+- `images`
+- `features`
 
-## Cara update ke GitHub
+Pastikan `id` tidak sama dengan produk lain.
 
-Dari folder repository:
+## Setelah edit
+
+Jalankan:
 
 ```bash
 git add .
-git commit -m "Redesign website interior inspired"
-git push origin main
+git commit -m "Update gambar dan data website"
+git push
 ```
-
-Netlify akan otomatis deploy ulang jika repo GitHub sudah tersambung.
