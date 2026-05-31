@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nara Living - Sofa Nyaman untuk Rumah Anda</title>
+  <meta
+    name="description"
+    content="Nara Living menyediakan sofa modern, nyaman, dan elegan dengan pilihan custom warna, bahan, dan ukuran untuk rumah Anda."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#home" class="logo" aria-label="Nara Living Home">
+        Nara <span>Living</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
+        <a href="#home">Home</a>
+        <a href="#produk">Produk</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#kontak" class="nav-cta">Konsultasi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="eyebrow">Premium Sofa Collection</span>
+          <h1>Sofa modern untuk ruang keluarga yang lebih nyaman.</h1>
+          <p>
+            Pilihan sofa elegan dengan material berkualitas, desain rapi, dan opsi
+            custom untuk menyesuaikan kebutuhan interior rumah Anda.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#produk" class="btn-primary">Lihat Koleksi</a>
+            <a href="#kontak" class="btn-secondary">Pesan Sekarang</a>
+          </div>
+
+          <div class="hero-stats" aria-label="Keunggulan Nara Living">
+            <div>
+              <strong>10+</strong>
+              <span>Model Sofa</span>
+            </div>
+            <div>
+              <strong>Custom</strong>
+              <span>Warna & Ukuran</span>
+            </div>
+            <div>
+              <strong>Premium</strong>
+              <span>Bahan Pilihan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Koleksi sofa Nara Living">
+          <div class="hero-image-main">
+            <img src="images/sofa hero.jpg" alt="Sofa modern Nara Living di ruang tamu" />
+          </div>
+
+          <div class="hero-floating-card">
+            <span>Mulai dari</span>
+            <strong>Rp5 Jutaan</strong>
+            <p>Bisa custom warna, bahan, dan ukuran.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kategori">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Kategori</span>
+          <h2>Pilih sofa sesuai kebutuhan ruangan Anda.</h2>
+          <p>Mulai dari sofa minimalis untuk ruang kecil hingga sofa keluarga yang luas dan nyaman.</p>
+        </div>
+
+        <div class="kategori-grid">
+          <article class="kategori-card">
+            <span class="card-icon">01</span>
+            <h3>Sofa Minimalis</h3>
+            <p>Cocok untuk rumah modern, apartemen, dan ruangan kecil yang ingin terlihat lega.</p>
+          </article>
+
+          <article class="kategori-card">
+            <span class="card-icon">02</span>
+            <h3>Sofa Keluarga</h3>
+            <p>Dudukan luas untuk ruang tamu, ruang TV, dan momen berkumpul bersama keluarga.</p>
+          </article>
+
+          <article class="kategori-card">
+            <span class="card-icon">03</span>
+            <h3>Sofa Curved</h3>
+            <p>Bentuk lembut dan estetik untuk menciptakan interior yang lebih hangat dan premium.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="produk" class="produk">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Katalog</span>
+          <h2>Koleksi sofa unggulan.</h2>
+          <p>Cari sofa favorit Anda, lalu klik detail untuk melihat gambar, warna, dan informasi produk.</p>
+        </div>
+
+        <div class="product-filter">
+          <label class="sr-only" for="searchProduct">Cari produk sofa</label>
+          <input
+            type="text"
+            id="searchProduct"
+            placeholder="Cari produk sofa..."
+            autocomplete="off"
+          />
+
+          <label class="sr-only" for="categoryFilter">Filter kategori</label>
+          <select id="categoryFilter">
+            <option value="all">Semua Kategori</option>
+            <option value="Minimalis">Minimalis</option>
+            <option value="Keluarga">Keluarga</option>
+            <option value="Sofa Bed">Sofa Bed</option>
+            <option value="Premium">Premium</option>
+            <option value="Custom">Custom</option>
+          </select>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+          <!-- Produk otomatis muncul dari script.js -->
+        </div>
+      </div>
+    </section>
+
+    <div class="product-modal" id="productModal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="close-modal" id="closeModal" type="button" aria-label="Tutup detail produk">
+          &times;
+        </button>
+
+        <div class="modal-grid">
+          <div class="modal-gallery">
+            <div class="modal-main-image">
+              <img id="modalMainImage" src="" alt="Detail produk sofa" />
+            </div>
+
+            <div class="modal-thumbnails" id="modalThumbnails">
+              <!-- Thumbnail otomatis dari script.js -->
+            </div>
+          </div>
+
+          <div class="modal-info">
+            <span class="modal-category" id="modalCategory"></span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+
+            <ul class="modal-features" id="modalFeatures">
+              <!-- Fitur otomatis dari script.js -->
+            </ul>
+
+            <div class="modal-price" id="modalPrice"></div>
+
+            <a
+              href="https://wa.me/6282195842319"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary modal-wa"
+              id="modalWhatsapp"
+            >
+              Chat via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="keunggulan" class="keunggulan">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Keunggulan</span>
+          <h2>Kenapa memilih Nara Living?</h2>
+          <p>Kami membantu Anda menemukan sofa yang nyaman, rapi, dan sesuai karakter rumah.</p>
+        </div>
+
+        <div class="keunggulan-grid">
+          <article class="keunggulan-card">
+            <h3>Bahan Berkualitas</h3>
+            <p>Menggunakan material pilihan yang kuat, nyaman, dan cocok untuk pemakaian harian.</p>
+          </article>
+
+          <article class="keunggulan-card">
+            <h3>Desain Modern</h3>
+            <p>Tampilan clean dan elegan yang mudah dipadukan dengan berbagai gaya interior.</p>
+          </article>
+
+          <article class="keunggulan-card">
+            <h3>Harga Bersahabat</h3>
+            <p>Pilihan sofa berkualitas dengan rentang harga yang fleksibel sesuai kebutuhan.</p>
+          </article>
+
+          <article class="keunggulan-card">
+            <h3>Bisa Custom</h3>
+            <p>Ukuran, warna, dan bahan dapat disesuaikan agar pas dengan ruangan Anda.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo">
+      <div class="container promo-content">
+        <span class="eyebrow eyebrow-light">Promo Spesial</span>
+        <h2>Wujudkan ruang tamu impian Anda bulan ini.</h2>
+        <p>Dapatkan konsultasi pilihan model, ukuran, warna, dan bahan sebelum melakukan pemesanan.</p>
+        <a href="#kontak" class="btn-light">Cek Promo & Konsultasi</a>
+      </div>
+    </section>
+
+    <section id="testimoni" class="testimoni">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Testimoni</span>
+          <h2>Apa kata pelanggan?</h2>
+        </div>
+
+        <div class="testimoni-grid">
+          <article class="testimoni-card">
+            <div class="stars" aria-label="Rating 5 dari 5">★★★★★</div>
+            <p>"Sofanya nyaman dan desainnya cocok untuk ruang tamu saya. Rumah jadi terlihat lebih rapi."</p>
+            <h4>Rina, Pontianak</h4>
+          </article>
+
+          <article class="testimoni-card">
+            <div class="stars" aria-label="Rating 5 dari 5">★★★★★</div>
+            <p>"Pelayanannya baik, bisa konsultasi warna dan ukuran. Hasilnya sesuai dengan kebutuhan rumah."</p>
+            <h4>Andi, Kubu Raya</h4>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pemesanan">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Pemesanan</span>
+          <h2>Cara pesan sofa di Nara Living.</h2>
+        </div>
+
+        <div class="step-grid">
+          <article class="step-card">
+            <span>01</span>
+            <h3>Pilih Produk</h3>
+            <p>Pilih model sofa yang sesuai dengan kebutuhan ruangan Anda.</p>
+          </article>
+
+          <article class="step-card">
+            <span>02</span>
+            <h3>Konsultasi</h3>
+            <p>Konsultasikan ukuran, warna, dan bahan melalui WhatsApp.</p>
+          </article>
+
+          <article class="step-card">
+            <span>03</span>
+            <h3>Proses Pesanan</h3>
+            <p>Pesanan diproses sesuai detail dan kesepakatan yang sudah ditentukan.</p>
+          </article>
+
+          <article class="step-card">
+            <span>04</span>
+            <h3>Pengiriman</h3>
+            <p>Sofa dikirim ke alamat Anda dengan aman dan rapi.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak" class="kontak">
+      <div class="container kontak-card">
+        <span class="eyebrow">Kontak</span>
+        <h2>Konsultasikan sofa yang cocok untuk rumah Anda.</h2>
+        <p>Tim kami siap membantu memilih desain, ukuran, warna, dan bahan yang paling sesuai.</p>
+
+        <a
+          href="https://wa.me/6282195842319?text=Halo,%20saya%20ingin%20konsultasi%20sofa%20Nara%20Living"
+          target="_blank"
+          rel="noopener"
+          class="btn-whatsapp"
+        >
+          Chat via WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Nara Living. Semua hak dilindungi.</p>
+      <a href="#home">Kembali ke atas</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
