@@ -3,7 +3,7 @@
   Data yang sering diedit sudah dipindahkan ke data.js.
   Edit gambar, produk, harga, dan fitur di data.js saja.
 */
-
+document.documentElement.classList.add("js-ready");
 const { SITE, PRODUCTS } = window.NARA_DATA || {};
 
 if (!SITE || !PRODUCTS) {

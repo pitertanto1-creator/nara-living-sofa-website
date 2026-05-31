@@ -990,12 +990,17 @@ button {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.7s ease;
 }
 
-.reveal.visible {
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.js-ready .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
