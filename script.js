@@ -197,24 +197,24 @@ function renderAdvantages() {
 
   const items = [
     {
-      icon: "▱",
-      title: "Desain Modern",
-      desc: "Model simpel dan mudah dipasangkan di berbagai ruangan."
+      icon: "🛡",
+      title: "Kualitas Terbaik",
+      desc: "Material premium dan tahan lama."
+    },
+    {
+      icon: "✎",
+      title: "Desain Minimalis",
+      desc: "Tampilan elegan, cocok untuk semua ruang."
     },
     {
       icon: "◌",
-      title: "Pilihan Warna",
-      desc: "Tersedia berbagai pilihan warna dan bahan."
+      title: "Banyak Pilihan",
+      desc: "Warna dan bahan bisa disesuaikan."
     },
     {
-      icon: "▰",
-      title: "Bisa Custom",
-      desc: "Ukuran, warna, dan bahan bisa disesuaikan."
-    },
-    {
-      icon: "☏",
-      title: "Konsultasi Mudah",
-      desc: "Konsultasi cepat dan respon ramah."
+      icon: "▱",
+      title: "Pengiriman Aman",
+      desc: "Sofa dikirim dengan aman dan rapi."
     }
   ];
 
@@ -223,8 +223,10 @@ function renderAdvantages() {
       (item) => `
         <article>
           <div class="icon">${item.icon}</div>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
+          <div class="feature-text">
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+          </div>
         </article>
       `
     )
