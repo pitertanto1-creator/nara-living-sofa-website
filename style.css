@@ -3602,3 +3602,107 @@ button {
     border-radius: 22px !important;
   }
 }
+/* =========================================================
+   MOBILE FIX - FEATURE PANEL 4 KOLOM SATU BARIS
+   Tempel PALING BAWAH style.css
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .feature-panel {
+    width: calc(100% - 24px) !important;
+    margin: -22px auto 0 !important;
+    position: relative !important;
+    z-index: 70 !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    border: 1px solid rgba(255, 255, 255, 0.86) !important;
+    box-shadow: 0 20px 45px rgba(47, 39, 34, 0.12) !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .feature-panel article {
+    min-height: 112px !important;
+    padding: 14px 6px 12px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    gap: 7px !important;
+    text-align: center !important;
+
+    border-right: 1px solid rgba(47, 39, 34, 0.10) !important;
+    border-bottom: none !important;
+  }
+
+  .feature-panel article:last-child {
+    border-right: none !important;
+  }
+
+  .feature-panel article:nth-child(2),
+  .feature-panel article:nth-child(4) {
+    border-right: 1px solid rgba(47, 39, 34, 0.10) !important;
+  }
+
+  .feature-panel article:nth-child(4) {
+    border-right: none !important;
+  }
+
+  .feature-panel .icon {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+
+    margin: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+
+    border-radius: 50% !important;
+    background: #f4eee7 !important;
+    color: #2c241f !important;
+
+    font-size: 17px !important;
+    line-height: 1 !important;
+  }
+
+  .feature-panel .feature-text,
+  .feature-panel article > div:not(.icon) {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 3px !important;
+  }
+
+  .feature-panel h3 {
+    width: 100% !important;
+    max-width: 76px !important;
+    margin: 0 auto !important;
+
+    color: #171412 !important;
+    font-size: 10.5px !important;
+    line-height: 1.15 !important;
+    font-weight: 850 !important;
+    letter-spacing: -0.02em !important;
+    text-align: center !important;
+  }
+
+  .feature-panel p {
+    width: 100% !important;
+    max-width: 78px !important;
+    margin: 0 auto !important;
+
+    color: #5b524b !important;
+    font-size: 8.8px !important;
+    line-height: 1.25 !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+  }
+}
