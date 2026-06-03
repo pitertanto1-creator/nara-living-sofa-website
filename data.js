@@ -18,15 +18,36 @@ window.NARA_DATA = {
     whatsappMessage: "Halo Nara Living, saya ingin konsultasi sofa.",
 
     hero: {
-      eyebrow: "Interior Sofa Studio",
-      title: "Design Your Dream Living Space",
+    eyebrow: "NARA LIVING PTK",
+    title: "Sofa yang pas, ruang tamu terasa lebih nyaman.",
+    subtitle:
+    "Pilihan sofa modern dengan desain sederhana, bahan berkualitas, dan bisa disesuaikan untuk rumah Anda.",
+    primaryButton: "Konsultasi Sekarang",
+    secondaryButton: "Lihat Katalog",
+    badgeTitle: "Custom Ready",
+    badgeText: "warna, ukuran, dan bahan",
+
+  slides: [
+    {
+      title: "Sofa yang pas, ruang tamu terasa lebih nyaman.",
       subtitle:
-        "Sofa modern, dekorasi hangat, dan konsultasi custom untuk membuat ruang tamu Anda terasa lebih nyaman dan elegan.",
-      primaryButton: "Lihat Katalog",
-      secondaryButton: "Konsultasi Gratis",
-      badgeTitle: "Custom Ready",
-      badgeText: "warna, ukuran, dan bahan"
+        "Pilihan sofa modern dengan desain sederhana, bahan berkualitas, dan bisa disesuaikan untuk rumah Anda.",
+      image: foto("sofa hero.jpg")
     },
+    {
+      title: "Custom sofa sesuai gaya rumah Anda.",
+      subtitle:
+        "Pilih ukuran, warna, dan bahan favorit agar sofa terlihat menyatu dengan interior ruangan.",
+      image: foto("SOFA HERO 2.jpg")
+    },
+    {
+      title: "Ruang keluarga lebih hangat dan elegan.",
+      subtitle:
+        "Temukan sofa nyaman untuk bersantai, menerima tamu, dan menikmati waktu bersama keluarga.",
+      image: foto("SOFA HERO 3.jpg")
+    }
+  ]
+},
 
     /* GANTI GAMBAR HERO DI SINI */
     heroImage: foto("sofa hero.jpg"),

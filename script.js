@@ -1,109 +1,384 @@
-/*
-  SCRIPT WEBSITE NARA LIVING
-  Data yang sering diedit ada di data.js.
-  File ini mengatur render tampilan, filter produk, modal, dan WhatsApp.
-*/
+const DATA = window.NARA_DATA;
+const SITE = DATA.SITE;
+const PRODUCTS = DATA.PRODUCTS;
 
-document.documentElement.classList.add("js-ready");
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
-const DEFAULT_DATA = {
-  SITE: {
-    whatsappNumber: "6282195842319",
-    whatsappMessage: "Halo Nara Living, saya ingin konsultasi sofa.",
-    hero: {
-      eyebrow: "Interior Sofa Studio",
-      title: "Design Your Dream Living Space",
-      subtitle: "Sofa modern dan custom untuk rumah yang nyaman dan elegan.",
-      primaryButton: "Lihat Katalog",
-      secondaryButton: "Konsultasi Gratis",
-      badgeTitle: "Custom Ready",
-      badgeText: "warna, ukuran, dan bahan"
-    },
-    heroImage: "images/sofa hero.jpg",
-    aboutImage: "images/SOFA HERO 2.jpg",
-    heroCards: [],
-    categories: [],
-    collections: [],
-    advantages: [],
-    aboutTitle: "Furniture yang Dibuat untuk Nyaman Dipakai Setiap Hari",
-    aboutText: "Kami membantu Anda memilih sofa yang cocok dengan kebutuhan ruangan.",
-    features: [],
-    promo: {
-      label: "Promo Spesial",
-      title: "Promo Spesial Bulan Ini",
-      text: "Dapatkan penawaran khusus untuk produk sofa tertentu.",
-      button: "Cek Promo"
-    },
-    testimonials: [],
-    steps: [],
-    contact: {
-      title: "Siap Membuat Ruang Tamu Lebih Elegan?",
-      text: "Klik tombol WhatsApp untuk konsultasi produk."
-    }
-  },
-  PRODUCTS: []
-};
+const modal = document.getElementById("productModal");
+const modalClose = document.getElementById("modalClose");
+const modalTitle = document.getElementById("modalTitle");
+const modalPrice = document.getElementById("modalPrice");
+const modalDesc = document.getElementById("modalDesc");
+const modalFeatures = document.getElementById("modalFeatures");
+const modalImage = document.getElementById("modalImage");
+const modalWa = document.getElementById("modalWa");
 
-const DATA = window.NARA_DATA || DEFAULT_DATA;
-const SITE = DATA.SITE || DEFAULT_DATA.SITE;
-const PRODUCTS = Array.isArray(DATA.PRODUCTS) ? DATA.PRODUCTS : [];
-
-const qs = (selector) => document.querySelector(selector);
-const qsa = (selector) => document.querySelectorAll(selector);
-
-function safeText(value, fallback = "") {
-  return value == null ? fallback : String(value);
+function waLink(message = SITE.whatsappMessage) {
+  return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-function createWhatsappLink(message) {
-  const number = SITE.whatsappNumber || DEFAULT_DATA.SITE.whatsappNumber;
-  const text = message || SITE.whatsappMessage || DEFAULT_DATA.SITE.whatsappMessage;
-  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-}
-
-function placeholderImage(title) {
-  const safeTitle = safeText(title, "Nara Living").replace(/[<>&]/g, "");
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650">
-      <defs>
-        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stop-color="#fffaf3"/>
-          <stop offset="100%" stop-color="#e6d2bd"/>
-        </linearGradient>
-      </defs>
-      <rect width="900" height="650" fill="url(#g)"/>
-      <rect x="120" y="275" width="660" height="115" rx="45" fill="#8c5a32" opacity="0.16"/>
-      <rect x="190" y="220" width="520" height="135" rx="45" fill="#8c5a32" opacity="0.24"/>
-      <circle cx="724" cy="196" r="56" fill="#df8848" opacity="0.24"/>
-      <text x="450" y="505" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="#3c2516">${safeTitle}</text>
-    </svg>`;
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
-}
-
-function setImageFallback(img, title) {
-  if (!img) return;
-  img.addEventListener("error", function handleError() {
-    img.removeEventListener("error", handleError);
-    img.src = placeholderImage(title);
+function setWhatsappLinks() {
+  document.querySelectorAll(".wa-link").forEach((link) => {
+    link.href = waLink();
   });
 }
 
-function setText(selector, text) {
-  const element = qs(selector);
-  if (element) element.textContent = safeText(text, element.textContent);
+let currentHeroSlide = 0;
+let heroSliderTimer = null;
+
+function getHeroSlides() {
+  if (SITE.hero && Array.isArray(SITE.hero.slides) && SITE.hero.slides.length) {
+    return SITE.hero.slides;
+  }
+
+  return [
+    {
+      title: "Sofa yang pas, ruang tamu terasa lebih nyaman.",
+      subtitle:
+        "Pilihan sofa modern dengan desain sederhana, bahan berkualitas, dan bisa disesuaikan untuk rumah Anda.",
+      image: SITE.heroImage
+    }
+  ];
 }
 
-function initHeader() {
-  const menuToggle = qs("#menuToggle");
-  const navMenu = qs("#navMenu");
+function formatHeroTitle(title) {
+  const cleanTitle = title.trim().toLowerCase();
+
+  if (cleanTitle.includes("sofa yang pas")) {
+    return `
+      <span>Sofa yang pas,</span>
+      <span>ruang tamu terasa</span>
+      <span>lebih nyaman.</span>
+    `;
+  }
+
+  if (cleanTitle.includes("custom sofa")) {
+    return `
+      <span>Custom sofa</span>
+      <span>sesuai gaya</span>
+      <span>rumah Anda.</span>
+    `;
+  }
+
+  if (cleanTitle.includes("ruang keluarga")) {
+    return `
+      <span>Ruang keluarga</span>
+      <span>lebih hangat</span>
+      <span>dan elegan.</span>
+    `;
+  }
+
+  return `
+    <span>${title}</span>
+  `;
+}
+
+function renderHeroSlide(index) {
+  const slides = getHeroSlides();
+  const slide = slides[index];
+
+  const heroImage = document.getElementById("heroImage");
+  const heroTitle = document.getElementById("heroTitle");
+  const heroSubtitle = document.getElementById("heroSubtitle");
+  const heroEyebrow = document.getElementById("heroEyebrow");
+
+  if (heroImage) {
+    heroImage.classList.remove("is-active");
+
+    setTimeout(() => {
+      heroImage.src = slide.image;
+      heroImage.classList.add("is-active");
+    }, 120);
+  }
+
+  if (heroTitle) {
+    heroTitle.classList.remove("text-in");
+
+    setTimeout(() => {
+      heroTitle.innerHTML = formatHeroTitle(slide.title);
+      heroTitle.classList.add("text-in");
+    }, 120);
+  }
+
+  if (heroSubtitle) {
+    heroSubtitle.classList.remove("text-in");
+
+    setTimeout(() => {
+      heroSubtitle.textContent = slide.subtitle;
+      heroSubtitle.classList.add("text-in");
+    }, 160);
+  }
+
+  if (heroEyebrow) {
+    heroEyebrow.textContent = SITE.hero.eyebrow || "NARA LIVING";
+  }
+
+  renderHeroDots();
+}
+
+function renderHeroDots() {
+  const dots = document.getElementById("heroDots");
+  if (!dots) return;
+
+  const slides = getHeroSlides();
+
+  dots.innerHTML = slides
+    .map(
+      (_, index) => `
+        <button 
+          type="button"
+          class="${index === currentHeroSlide ? "active" : ""}"
+          aria-label="Buka slide ${index + 1}"
+          data-slide="${index}">
+        </button>
+      `
+    )
+    .join("");
+
+  dots.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      currentHeroSlide = Number(button.dataset.slide);
+      renderHeroSlide(currentHeroSlide);
+      restartHeroSlider();
+    });
+  });
+}
+
+function nextHeroSlide() {
+  const slides = getHeroSlides();
+  currentHeroSlide = (currentHeroSlide + 1) % slides.length;
+  renderHeroSlide(currentHeroSlide);
+}
+
+function prevHeroSlide() {
+  const slides = getHeroSlides();
+  currentHeroSlide = (currentHeroSlide - 1 + slides.length) % slides.length;
+  renderHeroSlide(currentHeroSlide);
+}
+
+function startHeroSlider() {
+  heroSliderTimer = setInterval(nextHeroSlide, 5200);
+}
+
+function restartHeroSlider() {
+  clearInterval(heroSliderTimer);
+  startHeroSlider();
+}
+
+function bindHeroSliderButtons() {
+  const next = document.getElementById("heroNext");
+  const prev = document.getElementById("heroPrev");
+
+  if (next) {
+    next.addEventListener("click", () => {
+      nextHeroSlide();
+      restartHeroSlider();
+    });
+  }
+
+  if (prev) {
+    prev.addEventListener("click", () => {
+      prevHeroSlide();
+      restartHeroSlider();
+    });
+  }
+}
+
+function renderHero() {
+  renderHeroSlide(currentHeroSlide);
+  bindHeroSliderButtons();
+  startHeroSlider();
+}
+
+function renderAdvantages() {
+  const panel = document.getElementById("advantagePanel");
+  if (!panel) return;
+
+  const items = [
+    {
+      icon: "▱",
+      title: "Desain Modern",
+      desc: "Model simpel dan mudah dipasangkan di berbagai ruangan."
+    },
+    {
+      icon: "◌",
+      title: "Pilihan Warna",
+      desc: "Tersedia berbagai pilihan warna dan bahan."
+    },
+    {
+      icon: "▰",
+      title: "Bisa Custom",
+      desc: "Ukuran, warna, dan bahan bisa disesuaikan."
+    },
+    {
+      icon: "☏",
+      title: "Konsultasi Mudah",
+      desc: "Konsultasi cepat dan respon ramah."
+    }
+  ];
+
+  panel.innerHTML = items
+    .map(
+      (item) => `
+        <article>
+          <div class="icon">${item.icon}</div>
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderProducts() {
+  const grid = document.getElementById("productGrid");
+  if (!grid) return;
+
+  const selectedProducts = PRODUCTS.slice(0, 4);
+
+  grid.innerHTML = selectedProducts
+    .map(
+      (product) => `
+        <article class="product-card">
+          <img src="${product.images[0]}" alt="${product.name}" />
+          <div>
+            <h3>${product.name}</h3>
+            <strong>${product.price}</strong>
+            <button 
+              type="button"
+              data-product-id="${product.id}">
+              Lihat Detail →
+            </button>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+
+  bindProductButtons();
+}
+
+function renderCollections() {
+  const grid = document.getElementById("collectionGrid");
+  if (!grid) return;
+
+  grid.innerHTML = SITE.collections
+    .map(
+      (item) => `
+        <article class="collection-card">
+          <img src="${item.image}" alt="${item.title}" />
+          <div>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderAbout() {
+  const aboutImage = document.getElementById("aboutImage");
+  const aboutTitle = document.getElementById("aboutTitle");
+  const aboutText = document.getElementById("aboutText");
+  const aboutFeatures = document.getElementById("aboutFeatures");
+
+  if (aboutImage) aboutImage.src = SITE.aboutImage;
+  if (aboutTitle) aboutTitle.textContent = SITE.aboutTitle;
+  if (aboutText) aboutText.textContent = SITE.aboutText;
+
+  if (aboutFeatures) {
+    aboutFeatures.innerHTML = SITE.features
+      .map(
+        (feature) => `
+          <article>
+            <span>${feature.icon}</span>
+            <div>
+              <h3>${feature.title}</h3>
+              <p>${feature.desc}</p>
+            </div>
+          </article>
+        `
+      )
+      .join("");
+  }
+}
+
+function renderSteps() {
+  const row = document.getElementById("processRow");
+  if (!row) return;
+
+  const icons = ["☏", "▤", "☑", "▱"];
+
+  row.innerHTML = SITE.steps
+    .map((step, index) => {
+      const item = `
+        <article>
+          <span class="number">${index + 1}</span>
+          <div class="step-icon">${icons[index] || "○"}</div>
+          <h3>${step.title}</h3>
+          <p>${step.desc}</p>
+        </article>
+      `;
+
+      return index < SITE.steps.length - 1 ? item + `<div class="line"></div>` : item;
+    })
+    .join("");
+}
+
+function renderPromo() {
+  const promoLabel = document.getElementById("promoLabel");
+  const promoTitle = document.getElementById("promoTitle");
+  const promoText = document.getElementById("promoText");
+  const promoButton = document.getElementById("promoButton");
+
+  if (!SITE.promo) return;
+
+  if (promoLabel) promoLabel.textContent = SITE.promo.label;
+  if (promoTitle) promoTitle.textContent = SITE.promo.title;
+  if (promoText) promoText.textContent = SITE.promo.text;
+  if (promoButton) {
+    promoButton.textContent = SITE.promo.button;
+    promoButton.href = waLink(`Halo Nara Living, saya ingin cek promo sofa.`);
+  }
+}
+
+function renderTestimonials() {
+  const grid = document.getElementById("testimonialGrid");
+  if (!grid) return;
+
+  grid.innerHTML = SITE.testimonials
+    .map(
+      (item) => `
+        <article class="testimonial-card">
+          <p>“${item.text}”</p>
+          <strong>${item.name}</strong>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderContact() {
+  const contactTitle = document.getElementById("contactTitle");
+  const contactText = document.getElementById("contactText");
+
+  if (SITE.contact) {
+    if (contactTitle) contactTitle.textContent = SITE.contact.title;
+    if (contactText) contactText.textContent = SITE.contact.text;
+  }
+}
+
+function bindMenu() {
   if (!menuToggle || !navMenu) return;
 
   menuToggle.addEventListener("click", () => {
-    const isActive = navMenu.classList.toggle("active");
-    menuToggle.setAttribute("aria-expanded", String(isActive));
+    const active = navMenu.classList.toggle("active");
+    menuToggle.setAttribute("aria-expanded", String(active));
   });
 
-  qsa(".nav-menu a").forEach((link) => {
+  navMenu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       navMenu.classList.remove("active");
       menuToggle.setAttribute("aria-expanded", "false");
@@ -111,384 +386,74 @@ function initHeader() {
   });
 }
 
-function renderHero() {
-  setText("#heroEyebrow", SITE.hero?.eyebrow);
-  setText("#heroTitle", SITE.hero?.title);
-  setText("#heroSubtitle", SITE.hero?.subtitle);
-  setText("#heroPrimaryButton", SITE.hero?.primaryButton);
-  setText("#heroSecondaryButton", SITE.hero?.secondaryButton);
-  setText("#heroBadgeTitle", SITE.hero?.badgeTitle);
-  setText("#heroBadgeText", SITE.hero?.badgeText);
+function bindProductButtons() {
+  document.querySelectorAll("[data-product-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = Number(button.dataset.productId);
+      const product = PRODUCTS.find((item) => item.id === productId);
 
-  const heroImage = qs("#heroImage");
-  if (heroImage && SITE.heroImage) {
-    heroImage.src = SITE.heroImage;
-    setImageFallback(heroImage, "Nara Living Hero");
-  }
+      if (!product) return;
 
-  const row = qs("#heroCardRow");
-  if (!row) return;
+      modalTitle.textContent = product.name;
+      modalPrice.textContent = product.price;
+      modalDesc.textContent = product.description;
+      modalImage.src = product.images[0];
 
-  row.innerHTML = (SITE.heroCards || [])
-    .map(
-      (item) => `
-        <article class="hero-mini-card reveal visible">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
-          <div>
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-          </div>
-        </article>`
-    )
-    .join("");
+      modalFeatures.innerHTML = product.features
+        .map((feature) => `<li>${feature}</li>`)
+        .join("");
 
-  row.querySelectorAll("img").forEach((img) => setImageFallback(img, img.alt));
-}
+      modalWa.href = waLink(`Halo Nara Living, saya tertarik dengan ${product.name}.`);
 
-function renderCategories() {
-  const grid = qs("#kategoriGrid");
-  if (!grid) return;
-
-  grid.innerHTML = (SITE.categories || [])
-    .map(
-      (item) => `
-        <article class="kategori-card reveal">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-        </article>`
-    )
-    .join("");
-
-  grid.querySelectorAll("img").forEach((img) => setImageFallback(img, img.alt));
-}
-
-function renderCollections() {
-  const grid = qs("#collectionGrid");
-  if (!grid) return;
-
-  grid.innerHTML = (SITE.collections || [])
-    .map(
-      (item) => `
-        <article class="collection-card reveal">
-          <div class="collection-image">
-            <img src="${item.image}" alt="${item.title}" loading="lazy" />
-          </div>
-          <div class="collection-body">
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-          </div>
-        </article>`
-    )
-    .join("");
-
-  grid.querySelectorAll("img").forEach((img) => setImageFallback(img, img.alt));
-}
-
-function renderAdvantages() {
-  const grid = qs("#keunggulanGrid");
-  if (!grid) return;
-
-  grid.innerHTML = (SITE.advantages || [])
-    .map(
-      (item) => `
-        <article class="keunggulan-card reveal">
-          <div class="keunggulan-icon">${item.icon}</div>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-        </article>`
-    )
-    .join("");
-}
-
-function renderAbout() {
-  setText("#aboutTitle", SITE.aboutTitle);
-  setText("#aboutText", SITE.aboutText);
-
-  const aboutImage = qs("#aboutImage");
-  if (aboutImage && SITE.aboutImage) {
-    aboutImage.src = SITE.aboutImage;
-    setImageFallback(aboutImage, "Nara Living About");
-  }
-
-  const featureList = qs("#featureList");
-  if (!featureList) return;
-
-  featureList.innerHTML = (SITE.features || [])
-    .map(
-      (item) => `
-        <article class="feature-item">
-          <div class="feature-icon">${item.icon}</div>
-          <div>
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-          </div>
-        </article>`
-    )
-    .join("");
-}
-
-function renderPromo() {
-  setText("#promoLabel", SITE.promo?.label);
-  setText("#promoTitle", SITE.promo?.title);
-  setText("#promoText", SITE.promo?.text);
-  setText("#promoButton", SITE.promo?.button);
-}
-
-function renderTestimonials() {
-  const grid = qs("#testimonialGrid");
-  if (!grid) return;
-
-  grid.innerHTML = (SITE.testimonials || [])
-    .map(
-      (item) => `
-        <article class="testimonial-card reveal">
-          <div class="stars">★★★★★</div>
-          <p>"${item.text}"</p>
-          <div class="customer">- ${item.name}</div>
-        </article>`
-    )
-    .join("");
-}
-
-function renderProcess() {
-  const grid = qs("#processGrid");
-  if (!grid) return;
-
-  grid.innerHTML = (SITE.steps || [])
-    .map(
-      (item, index) => `
-        <article class="process-item">
-          <span class="process-number">${index + 1}</span>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-        </article>`
-    )
-    .join("");
-}
-
-function renderContact() {
-  setText("#contactTitle", SITE.contact?.title);
-  setText("#contactText", SITE.contact?.text);
-
-  const mainWhatsapp = qs("#mainWhatsapp");
-  const floatingWhatsapp = qs("#floatingWhatsapp");
-  const link = createWhatsappLink();
-
-  if (mainWhatsapp) mainWhatsapp.href = link;
-  if (floatingWhatsapp) floatingWhatsapp.href = link;
-}
-
-function renderFilters() {
-  const categoryFilter = qs("#categoryFilter");
-  if (!categoryFilter) return;
-
-  const categories = [...new Set(PRODUCTS.map((product) => product.category).filter(Boolean))].sort();
-  categoryFilter.innerHTML = `<option value="all">Semua Kategori</option>`;
-
-  categories.forEach((category) => {
-    const option = document.createElement("option");
-    option.value = category;
-    option.textContent = category;
-    categoryFilter.appendChild(option);
-  });
-}
-
-function renderProducts(productList) {
-  const productGrid = qs("#productGrid");
-  const emptyState = qs("#emptyState");
-  if (!productGrid) return;
-
-  productGrid.innerHTML = "";
-  if (emptyState) emptyState.style.display = productList.length ? "none" : "block";
-
-  productList.forEach((product) => {
-    const card = document.createElement("article");
-    card.className = "product-card";
-    const image = product.images && product.images.length ? product.images[0] : "";
-
-    card.innerHTML = `
-      <div class="product-image">
-        <img src="${image}" alt="${product.name}" loading="lazy" />
-      </div>
-      <div class="product-body">
-        <span class="product-badge">${product.category}</span>
-        <h3>${product.name}</h3>
-        <p>${product.shortDesc}</p>
-        <span class="product-price">${product.price}</span>
-        <div class="product-actions">
-          <button class="btn-detail" type="button" data-product-id="${product.id}">Lihat Detail</button>
-          <a class="btn-chat" href="${createWhatsappLink(`Halo, saya tertarik dengan ${product.name}`)}" target="_blank" rel="noopener">Chat</a>
-        </div>
-      </div>`;
-
-    setImageFallback(card.querySelector("img"), product.name);
-    card.querySelector(".btn-detail").addEventListener("click", () => openProductModal(product.id));
-    productGrid.appendChild(card);
-  });
-}
-
-function filterProducts() {
-  const searchElement = qs("#searchProduct");
-  const categoryElement = qs("#categoryFilter");
-
-  const searchValue = (searchElement?.value || "").trim().toLowerCase();
-  const categoryValue = categoryElement?.value || "all";
-
-  const filtered = PRODUCTS.filter((product) => {
-    const searchableText = [
-      product.name,
-      product.category,
-      product.price,
-      product.shortDesc,
-      product.description,
-      Array.isArray(product.features) ? product.features.join(" ") : ""
-    ]
-      .join(" ")
-      .toLowerCase();
-
-    const matchSearch = searchableText.includes(searchValue);
-    const matchCategory = categoryValue === "all" || product.category === categoryValue;
-
-    return matchSearch && matchCategory;
-  });
-
-  renderProducts(filtered);
-}
-
-function initProductSearch() {
-  const searchProduct = qs("#searchProduct");
-  const categoryFilter = qs("#categoryFilter");
-
-  if (searchProduct) searchProduct.addEventListener("input", filterProducts);
-  if (categoryFilter) categoryFilter.addEventListener("change", filterProducts);
-}
-
-function openProductModal(productId) {
-  const product = PRODUCTS.find((item) => item.id === productId);
-  if (!product) return;
-
-  const productModal = qs("#productModal");
-  const modalMainImage = qs("#modalMainImage");
-  const modalThumbnails = qs("#modalThumbnails");
-  const modalFeatures = qs("#modalFeatures");
-
-  setText("#modalCategory", product.category);
-  setText("#modalTitle", product.name);
-  setText("#modalDescription", product.description);
-  setText("#modalPrice", product.price);
-
-  const modalWhatsapp = qs("#modalWhatsapp");
-  if (modalWhatsapp) modalWhatsapp.href = createWhatsappLink(`Halo, saya tertarik dengan ${product.name}`);
-
-  const images = Array.isArray(product.images) ? product.images : [];
-  if (modalMainImage) {
-    modalMainImage.src = images[0] || placeholderImage(product.name);
-    modalMainImage.alt = product.name;
-    setImageFallback(modalMainImage, product.name);
-  }
-
-  if (modalFeatures) {
-    modalFeatures.innerHTML = (product.features || []).map((feature) => `<li>${feature}</li>`).join("");
-  }
-
-  if (modalThumbnails) {
-    modalThumbnails.innerHTML = "";
-    images.forEach((image, index) => {
-      const thumb = document.createElement("img");
-      thumb.src = image;
-      thumb.alt = `${product.name} gambar ${index + 1}`;
-      thumb.className = `modal-thumb${index === 0 ? " active" : ""}`;
-      setImageFallback(thumb, product.name);
-
-      thumb.addEventListener("click", () => {
-        if (modalMainImage) modalMainImage.src = image;
-        modalThumbnails.querySelectorAll(".modal-thumb").forEach((item) => item.classList.remove("active"));
-        thumb.classList.add("active");
-      });
-
-      modalThumbnails.appendChild(thumb);
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
     });
-  }
-
-  if (productModal) {
-    productModal.classList.add("active");
-    productModal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-  }
+  });
 }
 
-function closeProductModal() {
-  const productModal = qs("#productModal");
-  if (!productModal) return;
+function closeModal() {
+  if (!modal) return;
 
-  productModal.classList.remove("active");
-  productModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
 }
 
-function initModal() {
-  const closeModal = qs("#closeModal");
-  const productModal = qs("#productModal");
+function bindModal() {
+  if (modalClose) modalClose.addEventListener("click", closeModal);
 
-  if (closeModal) closeModal.addEventListener("click", closeProductModal);
-
-  if (productModal) {
-    productModal.addEventListener("click", (event) => {
-      if (event.target === productModal) closeProductModal();
+  if (modal) {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
     });
   }
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeProductModal();
+    if (event.key === "Escape" && modal && modal.classList.contains("active")) {
+      closeModal();
+    }
   });
 }
 
-function initRevealAnimation() {
-  const elements = qsa(".reveal");
-
-  if (!("IntersectionObserver" in window)) {
-    elements.forEach((element) => element.classList.add("visible"));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  elements.forEach((element) => observer.observe(element));
-}
-
-function initYear() {
-  const year = qs("#currentYear");
+function setYear() {
+  const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 }
 
-function initWebsite() {
-  initHeader();
+function init() {
   renderHero();
-  renderCategories();
-  renderCollections();
   renderAdvantages();
+  renderProducts();
+  renderCollections();
   renderAbout();
+  renderSteps();
   renderPromo();
   renderTestimonials();
-  renderProcess();
   renderContact();
-  renderFilters();
-  renderProducts(PRODUCTS);
-  initProductSearch();
-  initModal();
-  initYear();
-  initRevealAnimation();
+
+  setWhatsappLinks();
+  bindMenu();
+  bindModal();
+  setYear();
 }
 
-document.addEventListener("DOMContentLoaded", initWebsite);
+document.addEventListener("DOMContentLoaded", init);
