@@ -3706,3 +3706,50 @@ button {
     text-align: center !important;
   }
 }
+/* =========================================================
+   MOBILE ONLY - NAIKKAN PANEL FITUR 4 KOLOM
+   Tidak mengubah desktop / section lain
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .hero-section {
+    min-height: 585px !important;
+    padding-bottom: 18px !important;
+  }
+
+  .feature-panel {
+    margin-top: -86px !important;
+    position: relative !important;
+    z-index: 90 !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .feature-panel article {
+    min-height: 104px !important;
+    padding: 12px 5px 10px !important;
+  }
+
+  .feature-panel .icon {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    font-size: 15px !important;
+  }
+
+  .feature-panel h3 {
+    font-size: 10px !important;
+    line-height: 1.12 !important;
+    max-width: 72px !important;
+  }
+
+  .feature-panel p {
+    font-size: 8.5px !important;
+    line-height: 1.22 !important;
+    max-width: 76px !important;
+  }
+
+  .catalog-section {
+    padding-top: 34px !important;
+  }
+}
