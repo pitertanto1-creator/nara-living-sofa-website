@@ -1,13 +1,3 @@
-/*
-  DATA WEBSITE NARA LIVING
-  File ini dibuat agar kamu mudah edit gambar, fitur, harga, dan teks website.
-
-  Cara pakai gambar:
-  1. Masukkan foto ke folder images.
-  2. Panggil dengan foto("nama-file.jpg")
-  3. Contoh: foto("sofa-baru-1.jpg")
-*/
-
 function foto(namaFile) {
   return "images/" + namaFile;
 }
@@ -18,42 +8,40 @@ window.NARA_DATA = {
     whatsappMessage: "Halo Nara Living, saya ingin konsultasi sofa.",
 
     hero: {
-    eyebrow: "NARA LIVING PTK",
-    title: "Sofa yang pas, ruang tamu terasa lebih nyaman.",
-    subtitle:
-    "Pilihan sofa modern dengan desain sederhana, bahan berkualitas, dan bisa disesuaikan untuk rumah Anda.",
-    primaryButton: "Konsultasi Sekarang",
-    secondaryButton: "Lihat Katalog",
-    badgeTitle: "Custom Ready",
-    badgeText: "warna, ukuran, dan bahan",
-
-  slides: [
-    {
+      eyebrow: "NARA LIVING PTK",
       title: "Sofa yang pas, ruang tamu terasa lebih nyaman.",
       subtitle:
         "Pilihan sofa modern dengan desain sederhana, bahan berkualitas, dan bisa disesuaikan untuk rumah Anda.",
-      image: foto("sofa hero.jpg")
-    },
-    {
-      title: "Custom sofa sesuai gaya rumah Anda.",
-      subtitle:
-        "Pilih ukuran, warna, dan bahan favorit agar sofa terlihat menyatu dengan interior ruangan.",
-      image: foto("SOFA HERO 2.jpg")
-    },
-    {
-      title: "Ruang keluarga lebih hangat dan elegan.",
-      subtitle:
-        "Temukan sofa nyaman untuk bersantai, menerima tamu, dan menikmati waktu bersama keluarga.",
-      image: foto("SOFA HERO 3.jpg")
-    }
-  ]
-},
+      primaryButton: "Konsultasi Sekarang",
+      secondaryButton: "Lihat Katalog",
+      badgeTitle: "Custom Ready",
+      badgeText: "warna, ukuran, dan bahan",
 
-    /* GANTI GAMBAR HERO DI SINI */
+      slides: [
+        {
+          title: "Sofa yang pas, ruang tamu terasa lebih nyaman.",
+          subtitle:
+            "Pilihan sofa modern dengan desain sederhana, bahan berkualitas, dan bisa disesuaikan untuk rumah Anda.",
+          image: foto("sofa hero.jpg")
+        },
+        {
+          title: "Custom sofa sesuai gaya rumah Anda.",
+          subtitle:
+            "Pilih ukuran, warna, dan bahan favorit agar sofa terlihat menyatu dengan interior ruangan.",
+          image: foto("SOFA HERO 2.jpg")
+        },
+        {
+          title: "Ruang keluarga lebih hangat dan elegan.",
+          subtitle:
+            "Temukan sofa nyaman untuk bersantai, menerima tamu, dan menikmati waktu bersama keluarga.",
+          image: foto("SOFA HERO 3.jpg")
+        }
+      ]
+    },
+
     heroImage: foto("sofa hero.jpg"),
     aboutImage: foto("SOFA HERO 2.jpg"),
 
-    /* CARD KECIL DI BAWAH HERO */
     heroCards: [
       {
         title: "Modern Furniture",
@@ -72,7 +60,6 @@ window.NARA_DATA = {
       }
     ],
 
-    /* KATEGORI SOFA */
     categories: [
       {
         title: "Sofa Minimalis",
@@ -91,7 +78,6 @@ window.NARA_DATA = {
       }
     ],
 
-    /* KOLEKSI / INSPIRASI INTERIOR */
     collections: [
       {
         title: "Living Room",
@@ -115,31 +101,29 @@ window.NARA_DATA = {
       }
     ],
 
-    /* KEUNGGULAN UTAMA */
     advantages: [
       {
-        icon: "✦",
-        title: "Bahan Berkualitas",
-        desc: "Menggunakan material pilihan yang kuat, nyaman, dan cocok untuk pemakaian harian."
+        icon: "🛡",
+        title: "Kualitas Terbaik",
+        desc: "Material premium dan tahan lama."
       },
       {
-        icon: "▣",
-        title: "Desain Modern",
-        desc: "Model sofa mudah dipadukan dengan berbagai gaya interior rumah."
+        icon: "✎",
+        title: "Desain Minimalis",
+        desc: "Tampilan elegan, cocok untuk semua ruang."
       },
       {
-        icon: "✓",
-        title: "Bisa Custom",
-        desc: "Ukuran, warna, dan bahan bisa disesuaikan dengan kebutuhan ruangan."
+        icon: "◌",
+        title: "Banyak Pilihan",
+        desc: "Warna dan bahan bisa disesuaikan."
       },
       {
-        icon: "↗",
-        title: "Konsultasi Mudah",
-        desc: "Bisa konsultasi lewat WhatsApp sebelum menentukan produk yang cocok."
+        icon: "▱",
+        title: "Pengiriman Aman",
+        desc: "Sofa dikirim dengan aman dan rapi."
       }
     ],
 
-    /* ABOUT / FITUR DETAIL */
     aboutTitle: "Furniture yang Dibuat untuk Nyaman Dipakai Setiap Hari",
     aboutText:
       "Kami membantu Anda memilih sofa yang cocok dengan ukuran ruangan, gaya interior, dan kebutuhan keluarga. Mulai dari sofa minimalis, sofa keluarga, sampai custom warna dan bahan.",
@@ -212,42 +196,52 @@ window.NARA_DATA = {
     }
   },
 
-  /*
-    DATA PRODUK
-    Untuk ganti gambar produk, ubah bagian images.
-    Untuk ganti fitur produk, ubah bagian features.
-  */
   PRODUCTS: [
-    {
-      id: 1,
-      name: "Sofa Minimalis Nara",
-      category: "Minimalis",
-      price: "Rp8.900.000",
-      shortDesc: "Sofa minimalis elegan untuk ruang tamu modern.",
-      description:
-        "Sofa Minimalis Nara dirancang untuk ruang tamu modern dengan tampilan elegan, bahan premium, dan pilihan warna yang dapat disesuaikan.",
-      images: [foto("001.jpg"), foto("002.jpg"), foto("003.jpg")],
-      features: [
-        "Bisa custom warna",
-        "Bahan premium",
-        "Jahitan rapi",
-        "Cocok untuk ruang tamu modern"
-      ]
-    },
+
+    
+          {
+        id: 1,
+        name: "Nara Minimalist",
+        category: "Sofa 3 Seater",
+        price: "Rp8.900.000",
+        shortDesc: "Sofa minimalis 3 dudukan dengan desain bersih dan modern.",
+        description:
+          "Nara Minimalist adalah sofa 3 seater bergaya minimalis modern dengan bentuk tegas, armrest kotak, dudukan empuk, dan tampilan premium. Cocok untuk ruang tamu modern, apartemen, maupun ruang keluarga yang ingin terlihat rapi dan elegan.",
+        images: [
+          foto("nara-minimalist.jpg"),
+          foto("nara-minimalist.jpg"),
+          foto("nara-minimalist.jpg")
+        ],
+        features: [
+          "Tipe Sofa 3 Seater",
+          "Desain Minimalis Modern",
+          "Armrest kotak elegan",
+          "Kain premium tekstur halus",
+          "Dudukan empuk dan nyaman",
+          "Rangka kuat dan kokoh",
+          "Custom warna dan ukuran tersedia"
+        ]
+      },
     {
       id: 2,
-      name: "Sofa Aruna Cream",
-      category: "Minimalis",
-      price: "Rp6.700.000",
-      shortDesc: "Sofa cream lembut dengan desain hangat dan bersih.",
+      name: "Sofa Nordic L Cream",
+      category: "Sofa L Shape",
+      price: "Rp8.800.000",
+      shortDesc: "Sofa L modern dengan desain modular dan tampilan bersih.",
       description:
-        "Sofa Aruna Cream cocok untuk interior bernuansa natural, minimalis, dan modern. Warna cream memberikan kesan luas dan nyaman.",
-      images: [foto("004.jpg"), foto("005.jpg"), foto("006.jpg")],
+        "Sofa L minimalis dengan desain modular yang nyaman untuk ruang keluarga modern. Menggunakan kain Regatta warna 02 dengan nuansa cream natural yang mudah dipadukan dengan interior rumah.",
+      images: [
+        foto("sofa-l-nordic-cream.jpg"),
+        foto("sofa-l-nordic-cream.jpg"),
+        foto("sofa-l-nordic-cream.jpg")
+      ],
       features: [
-        "Warna cream elegan",
-        "Busa empuk",
-        "Rangka kuat",
-        "Mudah dipadukan dengan dekorasi rumah"
+        "Tipe Sofa L Shape",
+        "Desain Modular Minimalis",
+        "Kain Regatta 02",
+        "Warna Cream Natural",
+        "Ukuran Custom",
+        "Custom warna dan ukuran tersedia"
       ]
     },
     {
