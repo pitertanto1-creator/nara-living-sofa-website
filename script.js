@@ -196,27 +196,27 @@ function renderAdvantages() {
   if (!panel) return;
 
   const items = [
-    {
-      icon: "🛡",
-      title: "Kualitas Terbaik",
-      desc: "Material premium dan tahan lama."
-    },
-    {
-      icon: "✎",
-      title: "Desain Minimalis",
-      desc: "Tampilan elegan, cocok untuk semua ruang."
-    },
-    {
-      icon: "◌",
-      title: "Banyak Pilihan",
-      desc: "Warna dan bahan bisa disesuaikan."
-    },
-    {
-      icon: "▱",
-      title: "Pengiriman Aman",
-      desc: "Sofa dikirim dengan aman dan rapi."
-    }
-  ];
+  {
+    icon: "🛡️",
+    title: "Kualitas Terbaik",
+    desc: "Material premium dan tahan lama."
+  },
+  {
+    icon: "🛋️",
+    title: "Desain Minimalis",
+    desc: "Tampilan elegan, cocok untuk semua ruang."
+  },
+  {
+    icon: "🎨",
+    title: "Banyak Pilihan",
+    desc: "Warna dan bahan bisa disesuaikan."
+  },
+  {
+    icon: "🚚",
+    title: "Pengiriman Aman",
+    desc: "Sofa dikirim dengan aman dan rapi."
+  }
+];
 
   panel.innerHTML = items
     .map(
@@ -237,7 +237,7 @@ function renderProducts() {
   const grid = document.getElementById("productGrid");
   if (!grid) return;
 
-  const selectedProducts = PRODUCTS.slice(0, 4);
+  const selectedProducts = PRODUCTS;
 
   grid.innerHTML = selectedProducts
     .map(
@@ -311,7 +311,7 @@ function renderSteps() {
   const row = document.getElementById("processRow");
   if (!row) return;
 
-  const icons = ["☏", "▤", "☑", "▱"];
+  const icons = ["🛋️", "💬", "📋", "🚚"];
 
   row.innerHTML = SITE.steps
     .map((step, index) => {
@@ -455,7 +455,38 @@ function init() {
   setWhatsappLinks();
   bindMenu();
   bindModal();
+  bindFabricDetail();
   setYear();
 }
 
 document.addEventListener("DOMContentLoaded", init);
+function bindFabricDetail() {
+  document.querySelectorAll(".fabric-grid article").forEach((card) => {
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", () => {
+      const img = card.querySelector("img");
+      const name = card.querySelector("span")?.textContent || "Detail Kain";
+
+      if (!modal || !modalImage || !modalTitle || !modalDesc || !modalPrice || !modalFeatures || !modalWa) return;
+
+      modalImage.src = img.src;
+      modalImage.alt = name;
+      modalTitle.textContent = name;
+      modalPrice.textContent = "Pilihan bahan & warna";
+      modalDesc.textContent =
+        "Lihat detail pilihan kain ini untuk menentukan warna dan tekstur sofa yang sesuai dengan interior rumah Anda.";
+
+      modalFeatures.innerHTML = `
+        <li>Bisa digunakan untuk custom sofa</li>
+        <li>Pilihan warna dapat disesuaikan</li>
+        <li>Cocok untuk sofa ruang tamu dan keluarga</li>
+      `;
+
+      modalWa.href = waLink(`Halo Nara Living, saya ingin konsultasi bahan kain ${name}.`);
+
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+    });
+  });
+}

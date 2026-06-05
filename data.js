@@ -46,87 +46,88 @@ window.NARA_DATA = {
       {
         title: "Modern Furniture",
         desc: "Sofa modern untuk ruang tamu elegan.",
-        image: foto("001.jpg")
+        image: foto("nara-minimalist.jpg")
       },
       {
         title: "Custom Sofa",
         desc: "Custom warna, bahan, dan ukuran.",
-        image: foto("004.jpg")
+        image: foto("sofa-l-nordic-cream.jpg")
       },
       {
         title: "Inspired Living",
         desc: "Tampilan ruangan hangat dan nyaman.",
-        image: foto("SOFA HERO 3.jpg")
+        image: foto("chesterfield-classic.jpg")
       }
     ],
 
     categories: [
       {
         title: "Sofa Minimalis",
-        desc: "Cocok untuk rumah modern, apartemen, dan ruangan kecil.",
-        image: foto("001.jpg")
+        desc: "Sofa clean dan modern untuk ruang tamu elegan.",
+        image: foto("nara-minimalist.jpg")
       },
       {
-        title: "Sofa Keluarga",
-        desc: "Nyaman untuk ruang tamu dan area kumpul keluarga.",
-        image: foto("01.jpg")
+        title: "Sofa L Shape",
+        desc: "Sofa luas untuk ruang keluarga dan area santai.",
+        image: foto("sofa-l-nordic-cream.jpg")
       },
       {
         title: "Sofa Premium",
-        desc: "Desain mewah dengan material pilihan dan finishing rapi.",
-        image: foto("-022.jpg")
+        desc: "Pilihan sofa dengan desain eksklusif dan finishing rapi.",
+        image: foto("chesterfield-classic.jpg")
       }
     ],
 
     collections: [
       {
-        title: "Living Room",
-        desc: "Sofa nyaman untuk ruang tamu keluarga.",
-        image: foto("SOFA HERO 3.jpg")
+        title: "Modern Living Room",
+        desc: "Inspirasi ruang tamu modern dengan nuansa hangat dan elegan.",
+        image: foto("interior-01.jpg")
       },
       {
-        title: "Minimalist Space",
-        desc: "Pilihan sofa clean untuk interior modern.",
-        image: foto("004.jpg")
+        title: "Japanese Interior",
+        desc: "Ruang santai bergaya natural, simple, dan nyaman.",
+        image: foto("interior-02.jpg")
       },
       {
-        title: "Family Corner",
-        desc: "Ruang santai yang hangat dan fungsional.",
-        image: foto("04.jpg")
+        title: "Family Lounge",
+        desc: "Inspirasi area keluarga dengan sofa luas dan nyaman.",
+        image: foto("interior-03.jpg")
       },
       {
-        title: "Premium Lounge",
-        desc: "Kesan elegan untuk ruang utama.",
-        image: foto("-058.jpg")
+        title: "Premium Corner",
+        desc: "Tampilan ruang tamu premium dengan tata sofa yang rapi.",
+        image: foto("interior-04.jpg")
       }
     ],
 
-    advantages: [
-      {
-        icon: "🛡",
-        title: "Kualitas Terbaik",
-        desc: "Material premium dan tahan lama."
-      },
-      {
-        icon: "✎",
-        title: "Desain Minimalis",
-        desc: "Tampilan elegan, cocok untuk semua ruang."
-      },
-      {
-        icon: "◌",
-        title: "Banyak Pilihan",
-        desc: "Warna dan bahan bisa disesuaikan."
-      },
-      {
-        icon: "▱",
-        title: "Pengiriman Aman",
-        desc: "Sofa dikirim dengan aman dan rapi."
-      }
-    ],
+      advantages: [
+        {
+          icon: "🛡️",
+          title: "Kualitas Terbaik",
+          desc: "Material premium dan tahan lama."
+        },
+        {
+          icon: "🛋️",
+          title: "Desain Minimalis",
+          desc: "Tampilan elegan, cocok untuk semua ruang."
+        },
+        {
+          icon: "🎨",
+          title: "Banyak Pilihan",
+          desc: "Warna dan bahan bisa disesuaikan."
+        },
+        {
+          icon: "🚚",
+          title: "Pengiriman Aman",
+          desc: "Sofa dikirim dengan aman dan rapi."
+        }
+      ],
 
     aboutTitle: "Furniture yang Dibuat untuk Nyaman Dipakai Setiap Hari",
     aboutText:
       "Kami membantu Anda memilih sofa yang cocok dengan ukuran ruangan, gaya interior, dan kebutuhan keluarga. Mulai dari sofa minimalis, sofa keluarga, sampai custom warna dan bahan.",
+
     features: [
       {
         icon: "🛋️",
@@ -172,23 +173,27 @@ window.NARA_DATA = {
     ],
 
     steps: [
-      {
-        title: "Pilih Produk",
-        desc: "Pilih sofa yang sesuai dengan kebutuhan dan gaya ruangan Anda."
-      },
-      {
-        title: "Hubungi Kami",
-        desc: "Konsultasikan ukuran, warna, dan bahan melalui WhatsApp."
-      },
-      {
-        title: "Proses Pesanan",
-        desc: "Pesanan diproses sesuai detail dan kesepakatan."
-      },
-      {
-        title: "Pengiriman",
-        desc: "Sofa dikirim ke alamat Anda dengan aman."
-      }
-    ],
+        {
+    icon: "🛋️",
+    title: "Pilih Produk",
+    desc: "Pilih sofa yang sesuai dengan kebutuhan dan gaya ruangan Anda."
+  },
+  {
+    icon: "💬",
+    title: "Hubungi Kami",
+    desc: "Konsultasikan ukuran, warna, dan bahan melalui WhatsApp."
+  },
+  {
+    icon: "📋",
+    title: "Proses Pesanan",
+    desc: "Pesanan diproses sesuai detail dan kesepakatan."
+  },
+  {
+    icon: "🚚",
+    title: "Pengiriman",
+    desc: "Sofa dikirim ke alamat Anda dengan aman."
+  }
+  ],
 
     contact: {
       title: "Siap Membuat Ruang Tamu Lebih Elegan?",
@@ -197,39 +202,35 @@ window.NARA_DATA = {
   },
 
   PRODUCTS: [
-
-    
-          {
-        id: 1,
-        name: "Nara Minimalist",
-        category: "Sofa 3 Seater",
-        price: "Rp8.900.000",
-        shortDesc: "Sofa minimalis 3 dudukan dengan desain bersih dan modern.",
-        description:
-          "Nara Minimalist adalah sofa 3 seater bergaya minimalis modern dengan bentuk tegas, armrest kotak, dudukan empuk, dan tampilan premium. Cocok untuk ruang tamu modern, apartemen, maupun ruang keluarga yang ingin terlihat rapi dan elegan.",
-        images: [
-          foto("nara-minimalist.jpg"),
-          foto("nara-minimalist.jpg"),
-          foto("nara-minimalist.jpg")
-        ],
-        features: [
-          "Tipe Sofa 3 Seater",
-          "Desain Minimalis Modern",
-          "Armrest kotak elegan",
-          "Kain premium tekstur halus",
-          "Dudukan empuk dan nyaman",
-          "Rangka kuat dan kokoh",
-          "Custom warna dan ukuran tersedia"
-        ]
-      },
+    {
+      id: 1,
+      name: "Nara Minimalist",
+      category: "Sofa 3 2 1 Seater",
+      price: "Rp8.900.000",
+      shortDesc: "Sofa minimalis 3 dudukan dengan desain bersih dan modern.",
+      description:
+        "Nara Minimalist adalah sofa set design minimalis modern dengan bentuk tegas, armrest kotak, dudukan empuk, dan tampilan premium. Cocok untuk ruang tamu modern, apartemen, maupun ruang keluarga.",
+      images: [
+        foto("nara-minimalist.jpg"),
+        foto("nara-minimalist.jpg"),
+        foto("nara-minimalist.jpg")
+      ],
+      features: [
+        "Desain Minimalis Modern",
+        "Armrest kotak elegan",
+        "Kain premium tekstur halus",
+        "Dudukan empuk dan nyaman",
+        "Custom warna dan ukuran tersedia"
+      ]
+    },
     {
       id: 2,
-      name: "Sofa Nordic L Cream",
+      name: " Nordic ",
       category: "Sofa L Shape",
       price: "Rp8.800.000",
       shortDesc: "Sofa L modern dengan desain modular dan tampilan bersih.",
       description:
-        "Sofa L minimalis dengan desain modular yang nyaman untuk ruang keluarga modern. Menggunakan kain Regatta warna 02 dengan nuansa cream natural yang mudah dipadukan dengan interior rumah.",
+        "Sofa Nordic L Cream hadir dengan bentuk L yang nyaman untuk ruang keluarga. Desainnya bersih, modern, dan mudah dipadukan dengan interior natural maupun minimalis.",
       images: [
         foto("sofa-l-nordic-cream.jpg"),
         foto("sofa-l-nordic-cream.jpg"),
@@ -238,138 +239,143 @@ window.NARA_DATA = {
       features: [
         "Tipe Sofa L Shape",
         "Desain Modular Minimalis",
-        "Kain Regatta 02",
         "Warna Cream Natural",
-        "Ukuran Custom",
+        "Dudukan luas dan nyaman",
+        "Cocok untuk ruang keluarga",
         "Custom warna dan ukuran tersedia"
       ]
     },
-    {
-      id: 3,
-      name: "Sofa L Minimalis",
-      category: "Keluarga",
-      price: "Rp7.800.000",
-      shortDesc: "Sofa L Minimalis dengan desain luas untuk keluarga.",
-      description:
-        "Sofa L Minimalis dibuat untuk kebutuhan keluarga yang menginginkan sofa luas, nyaman, dan cocok untuk ruang santai bersama.",
-      images: [foto("01.jpg"), foto("02.jpg"), foto("03.jpg")],
-      features: [
-        "Menggunakan busa berkualitas tinggi",
-        "Bisa custom ukuran",
-        "Pilihan bahan kain atau kulit sintetis",
-        "Cocok untuk ruang keluarga"
-      ]
-    },
+
     {
       id: 4,
-      name: "Sofa Chesterfield Classic",
-      category: "Sofa Bed",
-      price: "Rp11.500.000",
-      shortDesc: "Sofa dengan desain klasik namun berkesan mewah.",
+      name: "Nara Aruna",
+      category: "Sofa Rounded",
+      price: "Rp5.500.000",
+      shortDesc: "Sofa rounded premium dengan bentuk lembut dan modern.",
       description:
-        "Sofa Chesterfield Classic cocok untuk rumah, apartemen, atau kamar tamu karena dapat digunakan sebagai sofa dan tempat tidur tambahan.",
-      images: [foto("000.jpg"), foto("0001.jpg"), foto("0002.jpg")],
+        "Nara Aruna hadir dengan desain rounded yang lembut, elegan, dan modern. Bentuk melengkungnya memberikan kesan hangat serta premium untuk ruang tamu estetik maupun lounge.",
+      images: [
+        foto("nara-aruna.jpg"),
+        foto("nara-aruna.jpg"),
+        foto("nara-aruna.jpg")
+      ],
       features: [
-        "Kapasitas besar",
-        "Desain mewah dan eksklusif",
-        "Cocok untuk kantor dan ruang tamu",
-        "Finishing detail"
+        "Desain rounded modern",
+        "Bentuk lembut dan elegan",
+        "Kain premium tekstur halus",
+        "Dudukan luas dan nyaman",
+        "Cocok untuk ruang estetik",
+        "Custom warna tersedia"
       ]
     },
     {
       id: 5,
-      name: "Sofa Oscar",
-      category: "Keluarga",
-      price: "Rp6.250.000",
-      shortDesc: "Sofa besar untuk ruang keluarga nyaman.",
+      name: "Nara Modern",
+      category: "Sofa Lounge",
+      price: "Rp8.750.000",
+      shortDesc: "Sofa lounge modern dengan desain clean dan nyaman.",
       description:
-        "Sofa Oscar memiliki ukuran besar dengan dudukan empuk, cocok untuk ruang keluarga dan momen berkumpul bersama.",
-      images: [foto("04.jpg"), foto("05.jpg"), foto("06.jpg")],
+        "Nara Modern Lounge dirancang dengan bentuk clean, dudukan tebal, dan tampilan modern. Cocok untuk ruang keluarga, ruang santai, maupun ruang tamu dengan konsep minimalis.",
+      images: [
+        foto("nara-modern-lounge.jpg"),
+        foto("nara-modern-lounge.jpg"),
+        foto("nara-modern-lounge.jpg")
+      ],
       features: [
-        "Kapasitas besar",
-        "Menggunakan kulit sintetis berkualitas",
-        "Bahan kuat",
-        "Cocok untuk keluarga"
+        "Desain modern clean",
+        "Dudukan tebal dan nyaman",
+        "Armrest empuk",
+        "Kain premium lembut",
+        "Cocok untuk ruang keluarga",
+        "Custom ukuran dan warna tersedia"
       ]
     },
     {
       id: 6,
-      name: "Sofa Comfort",
-      category: "Premium",
-      price: "Rp8.900.000",
-      shortDesc: "Sofa premium dengan finishing mewah.",
+      name: "Sofa Modular Cloud",
+      category: "Modular Sofa",
+      price: "Rp12.500.000",
+      shortDesc: "Sofa modular modern dengan dudukan luas dan desain premium.",
       description:
-        "Sofa Premium Comfort menghadirkan tampilan mewah dengan material pilihan dan finishing yang detail untuk ruangan elegan.",
-      images: [foto("-022.jpg"), foto("-023.jpg"), foto("-024.jpg")],
+        "Sofa Modular Cloud merupakan sofa modular premium dengan desain simetris, dudukan ekstra luas, dan kenyamanan maksimal. Cocok untuk ruang keluarga besar dan interior modern.",
+      images: [
+        foto("sofa-modular-cloud.jpg"),
+        foto("sofa-modular-cloud.jpg"),
+        foto("sofa-modular-cloud.jpg")
+      ],
       features: [
-        "Material premium",
-        "Finishing mewah",
-        "Desain eksklusif",
-        "Cocok untuk ruang tamu utama"
+        "Desain modular modern",
+        "Dudukan ekstra luas",
+        "Busa premium empuk",
+        "Rangka kuat",
+        "Cocok untuk ruang keluarga besar",
+        "Custom warna tersedia"
       ]
     },
     {
       id: 7,
-      name: "Sofa Minimalis Curved",
-      category: "Minimalis",
-      price: "Rp5.000.000",
-      shortDesc: "Sofa minimalis dengan lekukan sandaran yang elegan.",
+      name: "Sofa Scandinavian",
+      category: "Sofa Scandinavian",
+      price: "Rp9.200.000",
+      shortDesc: "Sofa bergaya Scandinavian dengan tampilan simpel dan hangat.",
       description:
-        "Sofa Minimalis Curved dapat disesuaikan dengan kebutuhan ruangan Anda, mulai dari ukuran, warna, bahan, hingga bentuk sofa.",
-      images: [foto("-040.jpg"), foto("-041.jpg"), foto("-042.jpg")],
+        "Sofa Scandinavian menawarkan desain sederhana, proporsi rapi, dan warna netral yang mudah menyatu dengan interior modern, japandi, maupun natural living.",
+      images: [
+        foto("sofa-scandinavian.jpg"),
+        foto("sofa-scandinavian.jpg"),
+        foto("sofa-scandinavian.jpg")
+      ],
       features: [
-        "Custom ukuran",
-        "Custom warna",
-        "Custom bahan",
-        "Konsultasi desain"
+        "Gaya Scandinavian modern",
+        "Warna netral dan hangat",
+        "Dudukan nyaman",
+        "Desain simpel dan bersih",
+        "Cocok untuk interior Japandi",
+        "Custom bahan dan warna tersedia"
       ]
     },
     {
       id: 8,
-      name: "Sofa Minimalis Grey",
-      category: "Minimalis",
-      price: "Rp9.650.000",
-      shortDesc: "Sofa abu-abu netral untuk interior modern.",
+      name: "Sofa Corner Premium",
+      category: "Sofa Corner",
+      price: "Rp14.900.000",
+      shortDesc: "Sofa corner ekstra panjang untuk ruang keluarga besar.",
       description:
-        "Sofa Minimalis Grey hadir dengan warna netral yang mudah dipadukan dengan berbagai konsep interior rumah.",
-      images: [foto("-037.jpg"), foto("-038.jpg"), foto("-039.jpg")],
+        "Sofa Corner Premium memiliki desain corner ekstra panjang dengan kapasitas duduk luas. Cocok untuk ruang tamu besar, ruang keluarga, atau area lounge premium.",
+      images: [
+        foto("sofa-corner-premium.jpg"),
+        foto("sofa-corner-premium.jpg"),
+        foto("sofa-corner-premium.jpg")
+      ],
       features: [
-        "Warna netral",
-        "Desain modern",
-        "Mudah dipadukan",
-        "Nyaman untuk ruang kecil"
+        "Desain corner ekstra panjang",
+        "Dudukan lebar dan nyaman",
+        "Cocok untuk keluarga besar",
+        "Kain premium lembut",
+        "Bisa custom ukuran",
+        "Pilihan warna tersedia"
       ]
     },
     {
       id: 9,
-      name: "Sofa Sectional",
-      category: "Premium",
-      price: "Rp7.200.000",
-      shortDesc: "Sofa warna light grey untuk nuansa hangat.",
+      name: "Nara Signature",
+      category: "Sofa Premium",
+      price: "Rp15.500.000",
+      shortDesc: "Sofa premium dengan tampilan eksklusif dan finishing rapi.",
       description:
-        "Sofa Sectional memberikan kesan hangat dan elegan, cocok untuk ruang tamu, lounge, atau area santai keluarga.",
-      images: [foto("-058.jpg"), foto("-059.jpg"), foto("-060.jpg")],
+        "Nara Signature adalah koleksi sofa premium dengan desain eksklusif, kenyamanan maksimal, dan detail finishing yang rapi. Cocok untuk ruang utama, lounge, maupun hunian premium.",
+      images: [
+        foto("nara-signature.jpg"),
+        foto("nara-signature.jpg"),
+        foto("nara-signature.jpg")
+      ],
       features: [
-        "Warna light grey elegan",
-        "Bahan lembut",
-        "Cocok untuk lounge",
-        "Tampilan hangat"
-      ]
-    },
-    {
-      id: 10,
-      name: "Sofa Charcoal Clambin",
-      category: "Keluarga",
-      price: "Rp13.150.000",
-      shortDesc: "Sofa charcoal modern untuk tampilan tegas.",
-      description:
-        "Sofa Charcoal Modern cocok untuk interior modern dengan karakter warna yang tegas, elegan, dan mudah dirawat.",
-      images: [foto("-055.jpg"), foto("-056.jpg"), foto("-057.jpg")],
-      features: [
-        "Warna charcoal modern",
-        "Tidak mudah terlihat kotor",
-        "Desain tegas",
-        "Cocok untuk ruang tamu modern"
+        "Koleksi premium Nara Living",
+        "Finishing detail dan rapi",
+        "Bahan kain premium",
+        "Dudukan empuk dan kokoh",
+        "Cocok untuk ruang utama",
+        "Custom warna dan ukuran tersedia"
       ]
     }
   ]

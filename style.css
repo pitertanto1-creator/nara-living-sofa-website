@@ -3753,3 +3753,18 @@ button {
     padding-top: 34px !important;
   }
 }
+.advantage-icon svg{
+  width:32px;
+  height:32px;
+  stroke:#2f241f;
+}
+
+.advantage-icon{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:#f5f1eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
