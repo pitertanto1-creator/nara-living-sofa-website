@@ -3753,18 +3753,72 @@ button {
     padding-top: 34px !important;
   }
 }
-.advantage-icon svg{
-  width:32px;
-  height:32px;
-  stroke:#2f241f;
+/* FIX DETAIL GAMBAR KOLEKSI BAHAN & WARNA */
+.fabric-grid article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.advantage-icon{
-  width:72px;
-  height:72px;
-  border-radius:50%;
-  background:#f5f1eb;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.fabric-grid img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: #fff;
+  padding: 8px;
+}
+
+.fabric-grid span {
+  margin-top: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .fabric-grid img {
+    height: 90px !important;
+    object-fit: contain !important;
+    padding: 5px;
+  }
+}
+/* FIX MODAL DETAIL GAMBAR BAHAN */
+.modal-box {
+  width: min(100%, 720px) !important;
+  max-height: 88vh !important;
+  padding: 28px !important;
+}
+
+.modal-image-wrap {
+  width: 100% !important;
+  height: 360px !important;
+  background: #fff !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  margin-bottom: 22px !important;
+}
+
+.modal-image-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  padding: 12px !important;
+  background: #fff !important;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .modal-box {
+    width: calc(100% - 20px) !important;
+    padding: 20px !important;
+  }
+
+  .modal-image-wrap {
+    height: 280px !important;
+  }
+
+  .modal-image-wrap img {
+    object-fit: contain !important;
+    padding: 8px !important;
+  }
 }
